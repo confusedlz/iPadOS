@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin=require('html-webpack-plugin');
+
 module.exports = {
     // 有development模式和production模式两种
     mode: 'development',

@@ -1,0 +1,36 @@
+.status{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 20px;
+    z-index: 20;
+}
+
+.status .left{
+    float: left;
+    margin-left: 3px;
+}
+
+.status .left .time{
+    line-height: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: white;
+    font-weight: 500;
+}
+
+.status .right{
+    float: right;
+    margin-right: 3px;
+    font-size: 0.7rem;
+    line-height: 20px;
+    color: white;
+    font-weight: 500;
+}
+
+.status .right span{
+    margin-left: 5px;
+}
+
+

@@ -1,17 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-class App extends React.Component {
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Status from './status/status';
+class Ipad extends React.Component {
     render() {
         return (
-            <div className='react'>
-                react
-            </div>
+            <main>
+                <Status />
+            </main>
         )
     }
 }
 
 ReactDOM.render(
-    <App />,
-    document.getElementById('root')
+    <Ipad />,
+    document.getElementById('app')
 )
