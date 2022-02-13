@@ -12,7 +12,7 @@ module.exports = {
         // 打包输出地址
         path: path.resolve(__dirname, './dist'),
         // 清除之前的打包文件
-        clean: true
+        clean: true,
     },
 
     module: {
@@ -39,7 +39,7 @@ module.exports = {
                 },
                 generator: {
                   filename: 'assets/img/[name].[hash:6][ext]'
-                }
+                },
             }
         ],
     },

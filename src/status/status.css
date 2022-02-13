@@ -4,7 +4,9 @@
     left: 0;
     width: 100vw;
     height: 20px;
-    z-index: 20;
+    z-index: 51;
+    background: #FFFFFF4D;
+    background-origin: .7;
 }
 
 .status .left{
@@ -14,18 +16,16 @@
 
 .status .left .time{
     line-height: 20px;
-    font-size: 0.8rem;
+    font-size: 16px;
     letter-spacing: 1px;
-    color: white;
     font-weight: 500;
 }
 
 .status .right{
     float: right;
     margin-right: 3px;
-    font-size: 0.7rem;
+    font-size: 16px;
     line-height: 20px;
-    color: white;
     font-weight: 500;
 }
 

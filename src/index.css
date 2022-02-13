@@ -4,10 +4,11 @@ body{
 }
 
 main{
+    box-sizing: border-box;
+    padding-top: 20px;
     width: 100vw;
     height: 100vh;
-    min-width: 900px;
-    background: url('../public/wallpaper/wallpaper1.jpg') no-repeat ;
+    background: url('../public/wallpaper/wallpaper3.jpg') no-repeat ;
     background-position: 50%;
     background-size: cover;
 }

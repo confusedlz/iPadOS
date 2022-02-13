@@ -1,0 +1,44 @@
+{
+  "id": "3179558",
+  "name": "iPadOS",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1249064",
+      "name": "苹果",
+      "font_class": "pingguo",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "5387553",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "eafe",
+      "unicode_decimal": 60158
+    },
+    {
+      "icon_id": "577357",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e74b",
+      "unicode_decimal": 59211
+    },
+    {
+      "icon_id": "318440",
+      "name": "wifi",
+      "font_class": "wifi",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
+      "icon_id": "936874",
+      "name": "80%电量",
+      "font_class": "80dianliang",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    }
+  ]
+}

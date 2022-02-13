@@ -1,41 +1,20 @@
 import React from 'react';
 import './status.css'
+import '../../public/fonticon/iconfont.css'
 
 //顶部状态栏组件
 class Status extends React.Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.state = { date: new Date() };
+        this.state={
+            dateOptions:{month: 'long', day: 'numeric' },
+            timeOptions:{hour:'2-digit',minute:'2-digit'}
+        };
     }
 
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => this.tick(),
-            30000
-        );
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-
-    //更新时间
-    tick() {
-        this.setState({
-            date: new Date()
-        });
-    }
-
-    // 获取星期
-    getDay(day) {
-        const week = ['日', '一', '二', '三', '四', '五', '六'];
-        return week[day];
-    }
-
-    //格式化分钟
-    format(minute){
-        if(minute<10) return '0'+minute;
-        else return minute;
+    getWeekday(){
+        const str=['日','一','二','三','四','五','六'];
+        return '周'+str[this.props.date.getDay()];
     }
 
     render() {
@@ -43,9 +22,8 @@ class Status extends React.Component {
             <div className='status'>
                 <div className='left'>
                     <div className='time'>
-                        <span>{this.state.date.getHours()}:{this.format(this.state.date.getMinutes())}   </span>
-                        <span>{this.state.date.getMonth()}月{this.state.date.getDate()}日</span>
-                        <span>周{this.getDay(this.state.date.getDay())}</span>
+                        <span>{this.props.date.toLocaleTimeString([],this.state.timeOptions)}   </span>
+                        <span>{this.props.date.toLocaleDateString([],this.state.dateOptions)+this.getWeekday()}</span>
                     </div>
                 </div>
                 <div className='right'>
