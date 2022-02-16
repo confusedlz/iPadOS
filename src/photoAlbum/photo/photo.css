@@ -1,0 +1,22 @@
+.photo input[type='radio']{
+    display: none;
+}
+
+.photoItem{
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.photoItem img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.photoItemFoucs{
+    background-color: #4BA2FF;
+}

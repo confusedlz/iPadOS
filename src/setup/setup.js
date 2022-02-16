@@ -133,6 +133,8 @@ class Setup extends React.Component {
                 this.props.message('登录成功');
                 this.setupDisplay(true);
                 this.updateUserInfoDisplay(res.userInfo.nickname, res.userInfo.email, res.userInfo.avatar);
+                localStorage.setItem('expireAt',res.userInfo.expireAt);
+                localStorage.setItem('photos',res.userInfo.backgroundimgid);
             }
             else {
                 this.props.message('登录失败' + res.message);
@@ -145,6 +147,8 @@ class Setup extends React.Component {
         inspirecloud.run('logout', {}).then(res => {
             if (res.success) {
                 this.props.message('退出登录成功');
+                localStorage.removeItem('expireAt');
+                localStorage.removeItem('photos');
                 this.setupDisplay();
                 this.setState({
                     avatar: defaultAvatat,
@@ -165,8 +169,8 @@ class Setup extends React.Component {
         }
         else {
             let user;
-            if(this.state.username === nickname) user={username};
-            else if(this.state.email===username) user={nickname};
+            if(this.state.username === nickname||nickname===null) user={username};
+            else if(this.state.email===username||username===null) user={nickname};
             else user={username,nickname};
             inspirecloud.run('updateUserData',user).then(res => {
                 if (res.success) {
@@ -242,7 +246,7 @@ class Setup extends React.Component {
                                     <img src={this.state.avatar} alt='avatar' />
                                     <div className="changeAvatar" onClick={() => this.upload()}>
                                         编辑
-                                        <input type='file' onChange={ev => this.getfile(ev)} ref={this.fileRef} accept=".png,.svg,.jpg,.jpeg,.gif" />
+                                        <input type='file' onChange={ev => this.getfile(ev)} ref={this.fileRef} accept=".png,.svg,.jpg,.jpeg,.gif"/>
                                     </div>
                                 </div>
                                 <h2>{this.state.username}</h2>

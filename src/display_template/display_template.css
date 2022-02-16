@@ -93,7 +93,6 @@
 }
 
 .display_template .content{
-    padding-top: 20px;
     flex: 5;
     height: 100%;
     box-sizing: border-box;

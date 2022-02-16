@@ -9,7 +9,6 @@ class Notebook extends React.Component {
             options: { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' },
             value:' ',
         };
-        // this.textRef = React.createRef();
     }
 
     componentDidMount() {

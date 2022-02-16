@@ -3,6 +3,8 @@
     margin: 5px 5px;
     width: 60px;
     height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
     transition: .3s;
     transform-origin: bottom;
     cursor: pointer;
