@@ -1,5 +1,6 @@
 .nav_moudule{
     position: relative;
+    margin: 5px 5px;
     width: 60px;
     height: 60px;
     transition: .3s;
@@ -8,7 +9,7 @@
 }
 
 .nav_moudule:hover{
-    margin: 0 15px;
+    margin: 0 20px;
     transform: scale(1.5, 1.5);
 }
 

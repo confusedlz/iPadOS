@@ -4,10 +4,18 @@ import './index.css';
 import Status from './status/status';
 import Nav from './nav/nav';
 import Notebook from './notebook/notebook';
+import Setup from './setup/setup';
+import Message from './message/message';
 class Ipad extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {date: new Date() };
+        this.state = {
+            date: new Date(),
+            rouse:'',
+            message:'',
+        };
+        this.change_module=this.change_module.bind(this);
+        this.newMessage=this.newMessage.bind(this);
     }
 
     componentDidMount() {
@@ -28,12 +36,26 @@ class Ipad extends React.Component {
         });
     }
 
+    //唤醒组件
+    change_module(module){
+        this.setState({rouse:module});
+        setTimeout(()=>{this.setState({rouse:''})},100);
+    }
+
+    //消息提示
+    newMessage(news){
+        this.setState({message:news});
+        setTimeout(()=>{this.setState({message:''});},1000);
+    }
+
     render() {
         return (
             <main>
                 <Status date={this.state.date}/>
-                <Notebook date={this.state.date}></Notebook>
-                <Nav/>
+                <Message message={this.state.message}/>
+                <Notebook date={this.state.date} rouse={this.state.rouse} />
+                <Setup rouse={this.state.rouse} message={this.newMessage}/>
+                <Nav change_module={this.change_module}/>
             </main>
         )
     };

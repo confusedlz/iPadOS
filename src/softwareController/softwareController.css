@@ -1,4 +1,5 @@
 .controller{
+    position: relative;
     margin-top:20px;
     padding-top: 5px;
     width: 100vw;
@@ -10,7 +11,11 @@
 }
 
 .comeback{
-    margin-left: 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: max-content;
     cursor: pointer;
 }
 

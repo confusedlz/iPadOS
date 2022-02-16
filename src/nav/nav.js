@@ -1,25 +1,23 @@
 import React from "react";
 import './nav.css'
 import Module from "./module";
-import png from '../../public/wallpaper/notebook.png';
+import notebookPng from '../../public/img/module/notebook.png';
+import setupPng from '../../public/img/module/setup.png';
 
-class Nav extends React.Component{
-    constructor(props){
+class Nav extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={};
     };
 
-    render(){
-        return(
-        <section>
+    render() {
+        return (
             <div className="section">
-                <Module img_src={png}/>
-                <Module img_src={png}/>
-                <Module img_src={png}/>
-                <Module img_src={png}/>
-                <Module img_src={png}/>
+                <Module img_src={notebookPng} />
+                <Module img_src={notebookPng} />
+                <Module img_src={notebookPng} display={this.props.change_module} module='Notebook' />
+                <Module img_src={notebookPng} />
+                <Module img_src={setupPng} display={this.props.change_module} module='Setup' />
             </div>
-        </section>
         )
 
     };
