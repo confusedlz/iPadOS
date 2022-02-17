@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin=require('html-webpack-plugin');
 const { resolve } = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     // 有development模式和production模式两种
@@ -61,4 +62,17 @@ module.exports = {
             progress: true,
           },
     },
+    optimization: {
+        minimizer: [new UglifyJsPlugin({
+            parallel:4,
+            uglifyOptions:{
+                output:{
+                    comments:false,
+                    beautify:false,
+                },
+                compress:{warninfs:false},
+            },
+            cache:true,
+        })],
+      },
 }

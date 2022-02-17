@@ -136,6 +136,8 @@ class Setup extends React.Component {
                 this.props.message('注册成功');
                 this.setupDisplay(true);
                 this.updateUserInfoDisplay(username, email, avatar);
+                // console.log(res.userInfo);
+                localStorage.setItem('expireAt', res.userInfo.userInfo.expireAt);
             }
             else {
                 this.props.message('注册失败' + res.message);
