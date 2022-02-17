@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin=require('html-webpack-plugin');
+const { resolve } = require('path');
 
 module.exports = {
     // 有development模式和production模式两种
@@ -48,7 +49,8 @@ module.exports = {
             // 以public/index.html文件为模板
             template: path.resolve(__dirname, './public/index.html'),
             // 生成文件的名称
-            filename: 'index.html'
+            filename: 'index.html',
+            favicon:resolve(__dirname,'./public/img/Apple.ico')
         }),
     ],
     devServer:{

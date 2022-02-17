@@ -3,9 +3,10 @@ import './nav.css'
 import Module from "./module";
 import notebookPng from '../../public/img/module/notebook.png';
 import setupPng from '../../public/img/module/setup.png';
-import photoPng from '../../public/img/module/photo.png'
+import photoPng from '../../public/img/module/photo.png';
+import appStorePng from '../../public/img/module/appstore.png';
 
-class Nav extends React.Component {
+class Nav extends React.Component {//底部导航栏
     constructor(props) {
         super(props);
     };
@@ -13,11 +14,10 @@ class Nav extends React.Component {
     render() {
         return (
             <div className="section">
-                <Module img_src={notebookPng} />
                 <Module img_src={photoPng} display={this.props.change_module} module='PhotoAlbum'/>
-                <Module img_src={notebookPng} display={this.props.change_module} module='Notebook' />
-                <Module img_src={notebookPng} />
-                <Module img_src={setupPng} display={this.props.change_module} module='Setup' />
+                <Module img_src={notebookPng} display={this.props.change_module} module='Notebook'/>
+                <Module img_src={appStorePng} display={this.props.change_module} module='AppStore'/>
+                <Module img_src={setupPng} display={this.props.change_module} module='Setup'/>
             </div>
         )
 

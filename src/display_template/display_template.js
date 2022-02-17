@@ -27,6 +27,7 @@ import SoftwareController from '../softwareController/softwateController';
 
     //关闭组件
     notdisplay(){
+        this.props.changeColor();
         this.dtRef.current.className='display_template display_template_display3 display_template_display1';
         setTimeout(()=>{this.dtRef.current.className='display_template'},200);
     }

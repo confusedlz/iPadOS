@@ -24,10 +24,21 @@ class Setup extends React.Component {
     }
 
     componentDidMount() {
+        //根据用户是否登录进行初始化
         inspirecloud.run('getUserInfo', {}).then(res => {
             if (res.user) {
                 this.setupDisplay(true);
                 this.updateUserInfoDisplay(res.user.nickname, res.user.username, res.user.avatar);
+                localStorage.setItem('expireAt', res.user.expireAt);
+                // if (res.user.backgroundimgid) localStorage.setItem('photos', [...res.user.backgroundimgid]);
+                if (res.user.apps){
+                    this.props.updataUser(true,null,res.user.apps);
+                    localStorage.setItem('apps', JSON.stringify(res.user.apps));
+                } 
+                if(res.user.backgroundimgid){
+                    this.props.updataUser(true,res.user.backgroundimgid);
+                    localStorage.setItem('photos',JSON.stringify(res.user.backgroundimgid));
+                } 
             }
             else {
                 this.setupDisplay();
@@ -57,11 +68,23 @@ class Setup extends React.Component {
 
     //更新个人信息显示
     updateUserInfoDisplay(nusername, nemail, navatar) {
-        this.setState({
-            username: nusername,
-            email: nemail,
-            avatar: navatar
-        });
+        if (nusername && nemail) {
+            this.setState({
+                username: nusername,
+                email: nemail,
+                avatar: navatar
+            });
+        } else if (nusername) {
+            this.setState({
+                username: nusername,
+                avatar: navatar
+            });
+        } else {
+            this.setState({
+                email: nemail,
+                avatar: navatar
+            });
+        }
     }
 
     //显示修改个人信息框
@@ -133,8 +156,10 @@ class Setup extends React.Component {
                 this.props.message('登录成功');
                 this.setupDisplay(true);
                 this.updateUserInfoDisplay(res.userInfo.nickname, res.userInfo.email, res.userInfo.avatar);
-                localStorage.setItem('expireAt',res.userInfo.expireAt);
-                localStorage.setItem('photos',res.userInfo.backgroundimgid);
+                this.props.updataUser(true, res.userInfo.backgroundimgid, res.userInfo.apps);
+                localStorage.setItem('expireAt', res.userInfo.expireAt);
+                if (res.userInfo.backgroundimgid) localStorage.setItem('photos', JSON.stringify(res.userInfo.backgroundimgid));
+                if (res.userInfo.apps) localStorage.setItem('apps', JSON.stringify(res.userInfo.apps));
             }
             else {
                 this.props.message('登录失败' + res.message);
@@ -147,8 +172,10 @@ class Setup extends React.Component {
         inspirecloud.run('logout', {}).then(res => {
             if (res.success) {
                 this.props.message('退出登录成功');
+                this.props.updataUser(false);
                 localStorage.removeItem('expireAt');
                 localStorage.removeItem('photos');
+                localStorage.removeItem('apps');
                 this.setupDisplay();
                 this.setState({
                     avatar: defaultAvatat,
@@ -169,13 +196,14 @@ class Setup extends React.Component {
         }
         else {
             let user;
-            if(this.state.username === nickname||nickname===null) user={username};
-            else if(this.state.email===username||username===null) user={nickname};
-            else user={username,nickname};
-            inspirecloud.run('updateUserData',user).then(res => {
+            if (this.state.username === nickname || !nickname) user = { username };
+            else if (this.state.email === username || !username) user = { nickname };
+            else user = { username, nickname };
+            console.log(user);
+            inspirecloud.run('updateUserData', user).then(res => {
                 if (res.success) {
                     this.props.message('修改个人信息成功');
-                    this.updateUserInfoDisplay(nickname, username,this.state.avatar);
+                    this.updateUserInfoDisplay(nickname, username, this.state.avatar);
                 }
                 else {
                     this.props.message('修改个人信息失败' + res.message);
@@ -226,6 +254,7 @@ class Setup extends React.Component {
                 name='Setup'
                 title='设置'
                 background_color='#F3F2F8'
+                changeColor={this.props.changeColor}
                 catalogue={
                     <div className="setup">
                         <div className="setupUserInfo">
@@ -246,7 +275,7 @@ class Setup extends React.Component {
                                     <img src={this.state.avatar} alt='avatar' />
                                     <div className="changeAvatar" onClick={() => this.upload()}>
                                         编辑
-                                        <input type='file' onChange={ev => this.getfile(ev)} ref={this.fileRef} accept=".png,.svg,.jpg,.jpeg,.gif"/>
+                                        <input type='file' onChange={ev => this.getfile(ev)} ref={this.fileRef} accept=".png,.svg,.jpg,.jpeg,.gif" />
                                     </div>
                                 </div>
                                 <h2>{this.state.username}</h2>
@@ -270,11 +299,11 @@ class Setup extends React.Component {
                             <form className="updateInfo">
                                 <label>
                                     <p>姓名</p>
-                                    <input type='text' name='username' defaultValue={this.state.username} pattern="^[\u4e00-\u9fa5_a-zA-Z0-9_]{1,10}$"/>
+                                    <input type='text' name='username' defaultValue={this.state.username} pattern="^[\u4e00-\u9fa5_a-zA-Z0-9_]{1,10}$" />
                                 </label>
                                 <label>
                                     <p>电子邮箱(Apple ID)</p>
-                                    <input type='text' name='email' defaultValue={this.state.email} pattern='^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$'/>
+                                    <input type='text' name='email' defaultValue={this.state.email} pattern='^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$' />
                                 </label>
                                 <button type="submit">修改个人信息</button>
                             </form>
@@ -287,11 +316,11 @@ class Setup extends React.Component {
                             <form className="loginInfo" onSubmit={ev => this.login(ev)}>
                                 <label>
                                     <p>电子邮箱(Apple ID)</p>
-                                    <input type='text' name='email' pattern='^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$' required/>
+                                    <input type='text' name='email' pattern='^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$' required />
                                 </label>
                                 <label>
                                     <p>密码</p>
-                                    <input type='password' name='password' required/>
+                                    <input type='password' name='password' required />
                                 </label>
                                 <button type="submit">登录</button>
                             </form>
@@ -308,15 +337,15 @@ class Setup extends React.Component {
                             <form className="registerInfo" onSubmit={ev => this.register(ev)}>
                                 <label>
                                     <p>姓名</p>
-                                    <input type='text' name='username' placeholder="只能包含中文、英文、数字和下划线,长度1-10位" pattern="^[\u4e00-\u9fa5_a-zA-Z0-9_]{1,10}$" required/>
+                                    <input type='text' name='username' placeholder="只能包含中文、英文、数字和下划线,长度1-10位" pattern="^[\u4e00-\u9fa5_a-zA-Z0-9_]{1,10}$" required />
                                 </label>
                                 <label>
                                     <p>电子邮箱(Apple ID)</p>
-                                    <input type='text' name='email' placeholder="例:1234567890@qq.com" pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required/>
+                                    <input type='text' name='email' placeholder="例:1234567890@qq.com" pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required />
                                 </label>
                                 <label>
                                     <p>密码</p>
-                                    <input type='password' name='password' required/>
+                                    <input type='password' name='password' required />
                                 </label>
                                 <button type="submit">注册</button>
                             </form>

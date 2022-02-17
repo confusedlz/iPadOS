@@ -167,7 +167,7 @@
     right: 0;
     margin: 10px auto;
     height: 20px;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
 }
 
@@ -251,7 +251,7 @@
     right: 0;
     margin: 10px auto;
     height: 20px;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
 }
 
@@ -304,7 +304,7 @@
     cursor: pointer;
 }
 
-.login .login button:hover{
+.login .loginInfo button:hover{
     background-color: #b4b3b3;
 }
 
@@ -339,7 +339,7 @@
     right: 0;
     margin: 10px auto;
     height: 20px;
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
 }
 

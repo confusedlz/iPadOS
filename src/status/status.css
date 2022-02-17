@@ -5,13 +5,14 @@
     width: 100vw;
     height: 20px;
     z-index: 51;
-    background: #FFFFFF4D;
+    /* background: #FFFFFF4D; */
     background-origin: .7;
 }
 
 .status .left{
-    float: left;
-    margin-left: 3px;
+    position: absolute;
+    /* float: left; */
+    left: 3px;
 }
 
 .status .left .time{
@@ -22,8 +23,10 @@
 }
 
 .status .right{
-    float: right;
-    margin-right: 3px;
+    position: fixed;
+    /* float: right; */
+    top: 0;
+    right: 3px;
     font-size: 16px;
     line-height: 20px;
     font-weight: 500;
@@ -31,6 +34,7 @@
 
 .status .right span{
     margin-left: 5px;
+    font-size: 18px;
 }
 
 

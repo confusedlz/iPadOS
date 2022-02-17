@@ -19,13 +19,14 @@ class Status extends React.Component {
 
     render() {
         return (
-            <div className='status'>
+            <div className='status' style={{color:this.props.fontColor}}>
                 <div className='left'>
                     <div className='time'>
                         <span>{this.props.date.toLocaleTimeString([],this.state.timeOptions)}   </span>
                         <span>{this.props.date.toLocaleDateString([],this.state.dateOptions)+this.getWeekday()}</span>
                     </div>
                 </div>
+                <div className='lockScreen' title='锁屏' onClick={this.props.displayLockScreen}><i className='iconfont icon-suoping'></i></div>
                 <div className='right'>
                     <span className="iconfont icon-wifi"></span>
                     <span>80%</span>

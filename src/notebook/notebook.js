@@ -40,6 +40,7 @@ class Notebook extends React.Component {
         return (
             <Display_template
                 rouse={this.props.rouse}
+                changeColor={this.props.changeColor}
                 name='Notebook'
                 title='备忘录'
                 catalogue={
