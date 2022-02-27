@@ -1,0 +1,196 @@
+.loginOn{
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.loginOnnotdisplay{
+    display: none;
+}
+
+.loginOn .loginOnInfo h3{
+    margin: 0 0 30px 0;
+}
+
+.loginOn .loginOnInfo .avatar{
+    position: relative;
+    left:0;
+    right: 0;
+    margin:auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.loginOn .loginOnInfo .avatar img{
+    width: 100%;
+    height: 100%;
+}
+
+.loginOn .loginOnInfo .avatar .changeAvatar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background-color: black;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.loginOn .loginOnInfo .avatar .changeAvatar input{
+    display: none;
+}
+
+.loginOn .loginOnInfo h2{
+    margin: 10px 0 0 0;
+}
+
+.loginOn .loginOnInfo p{
+    margin: 3px 0 0 0;
+}
+
+.loginOn .userInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: left;
+    overflow: hidden;
+}
+
+.loginOn .userInfo .userInfoItem{
+    padding: 15px 12px 15px 30px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #F3F2F8;
+    transition: .1s;
+}
+
+.loginOn .userInfo .userInfoItem:hover{
+    background-color: #b4b3b3;
+    cursor: pointer;
+}
+
+.loginOn .userInfo .userInfoItem i, .loginOn .userInfo .userInfoItem span{
+    float: right;
+    margin-right: 10px;
+    line-height: 22px;
+    color: #CECECE;
+}
+
+.userInfoimg{
+    width: 90%;
+}
+
+.loginOn .loginOut{
+    left: 0;
+    right: 0;
+    margin: 20px auto 100px auto;
+    display: block;
+    width: 90%;
+    height: 50px;
+    background-color: #ffffff;
+    color: red;
+    font-size: 18px;
+    line-height: 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.loginOn .loginOut:hover{
+    background-color: #b4b3b3;
+}
+
+.updateUserData{
+    display: block;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 100%;
+    transition: .2s;
+    z-index: 51;
+    background-color: rgb(243, 242, 248);
+}
+
+.updateUserDataDisplay{
+    left: 0;
+}
+
+.updateUserData .updateStatus{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    height: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.updateUserData .updateStatus button{
+    font-size: 18px;
+    float: left;
+    color: #4BA2FF;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.updateUserData .updateInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.updateUserData .updateInfo label{
+    margin-top: 20px;
+    display: block;
+}
+
+.updateUserData .updateInfo p{
+    margin: 3px 0;
+    padding: 5px;
+    color: #7c7b7e;
+    font-size: 16px;
+}
+
+.updateUserData .updateInfo input{
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.updateUserData .updateInfo input:focus{
+    outline: none;
+    border: none;
+}
+
+.updateUserData .updateInfo button{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.updateUserData .updateInfo button:hover{
+    background-color: #b4b3b3;
+}
