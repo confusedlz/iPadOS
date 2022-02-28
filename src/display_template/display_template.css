@@ -1,11 +1,12 @@
 .display_template {
     position: fixed;
     top: 0;
+    padding-top: 20px;
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
     z-index: 50;
-    background-color: #fff;
+    background-color: #F3F2F8;
     display: none;
     transform-origin: bottom;
 }
@@ -97,7 +98,8 @@
     height: 100%;
     box-sizing: border-box;
     background-color: #ffffff;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .display_template .content::-webkit-scrollbar {

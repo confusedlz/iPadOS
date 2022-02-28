@@ -13,12 +13,14 @@ import AppStore from './appStore/appStore';
 import wallpaper1 from '../public/img/wallpaper/wallpaper1.jpg';
 import wallpaper2 from '../public/img/wallpaper/wallpaper2.jpg';
 import wallpaper3 from '../public/img/wallpaper/wallpaper3.jpg';
+import Controller from './controller/controller';
 class Ipad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             date: new Date(),
             rouse:'',
+            close:false,
             message:'',
             display:false,
             color:'#ffffff',
@@ -45,6 +47,7 @@ class Ipad extends React.Component {
         this.displayLockScreen=this.displayLockScreen.bind(this);
         this.installAPP=this.installAPP.bind(this);
         this.updataUser=this.updataUser.bind(this);
+        this.changeClose=this.changeClose.bind(this);
     }
 
     componentDidMount() {//初始化显示
@@ -112,6 +115,12 @@ class Ipad extends React.Component {
         
     }
 
+    changeClose(){
+        this.changeColor();
+        this.setState({close:true});
+        setTimeout(()=>{this.setState({close:false})},100);
+    }
+
     render() {
         return (
             <main style={{backgroundImage:'url('+this.state.backgroundUrl+')'}}>
@@ -124,12 +133,14 @@ class Ipad extends React.Component {
                 {/* 屏幕显示App */}
                 <AppContainer apps={this.state.apps}/>
                 {/* 主体应用 */}
-                <PhotoAlbum updataUser={this.updataUser} photos={this.state.photos} message={this.newMessage} changeColor={this.changeColor} rouse={this.state.rouse} changeBackground={this.changeBackground}/>
-                <Notebook date={this.state.date} changeColor={this.changeColor} rouse={this.state.rouse}/>
-                <AppStore installAPP={this.installAPP} apps={this.state.apps} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>
-                <Setup updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>
+                <PhotoAlbum close={this.state.close} updataUser={this.updataUser} photos={this.state.photos} message={this.newMessage} changeColor={this.changeColor} rouse={this.state.rouse} changeBackground={this.changeBackground}/>
+                <Notebook close={this.state.close} date={this.state.date} changeColor={this.changeColor} rouse={this.state.rouse}/>
+                <AppStore close={this.state.close} installAPP={this.installAPP} apps={this.state.apps} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>
+                <Setup close={this.state.close} updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>
                 {/* 底部导航 */}
                 <Nav change_module={this.change_module}/>
+
+                <Controller changeClose={this.changeClose} color={this.state.color}/>
             </main>
         )
     };

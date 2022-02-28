@@ -161,6 +161,7 @@
 }
 
 .updateUserData .updateInfo input{
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
     font-size: 18px;

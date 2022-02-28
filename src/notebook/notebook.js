@@ -39,6 +39,7 @@ class Notebook extends React.Component {
     render() {
         return (
             <Display_template
+                close={this.props.close}
                 rouse={this.props.rouse}
                 changeColor={this.props.changeColor}
                 name='Notebook'

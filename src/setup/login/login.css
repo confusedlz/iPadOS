@@ -39,6 +39,7 @@
 }
 
 .login .loginInfo input{
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
     font-size: 18px;
@@ -136,6 +137,7 @@
 }
 
 .register .registerInfo input{
+    box-sizing: border-box;
     width: 100%;
     height: 50px;
     font-size: 16px;

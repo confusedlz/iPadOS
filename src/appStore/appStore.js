@@ -24,7 +24,7 @@ class AppStore extends React.Component {
         ev.preventDefault();
         let appUrl = ev.target[0].value;
         const appName = ev.target[1].value;
-        if (appUrl.split('//')[0] != 'https:' && appUrl.split('//')[0] != 'http:') appUrl = 'http://' + appUrl;
+        if (appUrl.split('//')[0] != 'https:' && appUrl.split('//')[0] != 'http:') appUrl = 'https://' + appUrl;
         inspirecloud.run('updateUserApp', {
             appUrl,
             appName
@@ -43,6 +43,7 @@ class AppStore extends React.Component {
         const apps = this.props.apps;
         return (
             <Display_template
+                close={this.props.close}
                 rouse={this.props.rouse}
                 changeColor={this.props.changeColor}
                 name='AppStore'

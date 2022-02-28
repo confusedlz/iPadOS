@@ -73,9 +73,9 @@ class PhotoAlbum extends React.Component {
 
     render() {
         const photos = this.props.photos;
-        // console.log(photos);
         return (
             <Display_template
+                close={this.props.close}
                 rouse={this.props.rouse}
                 changeColor={this.props.changeColor}
                 name='PhotoAlbum'
