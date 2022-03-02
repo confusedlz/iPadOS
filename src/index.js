@@ -15,6 +15,10 @@ import wallpaper2 from '../public/img/wallpaper/wallpaper2.jpg';
 import wallpaper3 from '../public/img/wallpaper/wallpaper3.jpg';
 import Controller from './controller/controller';
 import AppManagement from './appManagement/appManagement';
+import Schedule from './schedule/schedule';
+const InspireCloud = require('@byteinspire/js-sdk')
+const serviceId = 'qcv9se';
+const inspirecloud = new InspireCloud({ serviceId });
 class Ipad extends React.Component {
     constructor(props) {
         super(props);
@@ -63,6 +67,20 @@ class Ipad extends React.Component {
             1000
         );
         if(localStorage.getItem('background')) this.setState({backgroundUrl:localStorage.getItem('background')});
+        //根据用户是否登录进行初始化
+        inspirecloud.run('getUserInfo', {}).then(res => {
+            if (res.user) {
+                localStorage.setItem('expireAt', res.user.expireAt);
+                if (res.user.apps){//如果用户有安装的app便加载
+                    this.updataUser(true,null,res.user.apps);
+                    localStorage.setItem('apps', JSON.stringify(res.user.apps));
+                } 
+                if(res.user.backgroundimgid){//如果用户有上传的照片便加载
+                    this.updataUser(true,res.user.backgroundimgid);
+                    localStorage.setItem('photos',JSON.stringify(res.user.backgroundimgid));
+                } 
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -98,10 +116,10 @@ class Ipad extends React.Component {
     }
 
     //隐藏应用
-    changeClose(){
+    async changeClose(){
         this.changeColor();
-        this.setState({close:true});
-        setTimeout(()=>{this.setState({close:false})},100);
+        await this.setState({close:true});
+        this.setState({close:false})
     }
 
     //更改状态栏颜色
@@ -138,6 +156,7 @@ class Ipad extends React.Component {
         
     }
 
+    //显示或关闭应用管理栏
     changeAppManagement(flag){
         this.setState({appManagement:flag});
     }
@@ -162,10 +181,12 @@ class Ipad extends React.Component {
                 {this.state.load.has('Notebook')?<Notebook close={this.state.close} date={this.state.date} changeColor={this.changeColor} rouse={this.state.rouse}/>:null}
                 {this.state.load.has('AppStore')?<AppStore close={this.state.close} installAPP={this.installAPP} apps={this.state.apps} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
                 {this.state.load.has('Setup')?<Setup close={this.state.close} updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
-                
+                {this.state.load.has('Schedule')?<Schedule close={this.state.close} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
+
                 {/* 底部导航 */}
                 <Nav changeAppManagement={this.changeAppManagement} change_module={this.change_module}/>
 
+                {/* 底部应用控制条 */}
                 <Controller changeAppManagement={this.changeAppManagement} changeClose={this.changeClose} color={this.state.color}/>
             </main>
         )

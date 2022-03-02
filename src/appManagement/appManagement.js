@@ -9,6 +9,8 @@ import appstoreimg from '../../public/img/module/appstore.png';
 import notebookimg from '../../public/img/module/notebook.png';
 import photoimg from '../../public/img/module/photo.png';
 import setupimg from '../../public/img/module/setup.png';
+import Schedule from "../schedule/schedule";
+import scheduleimg from "../../public/img/module/schedule.png";
 
 class AppManagement extends React.Component {
     constructor(props) {
@@ -65,6 +67,17 @@ class AppManagement extends React.Component {
                             change_module={this.props.change_module}
                             changeAppManagement={this.props.changeAppManagement}
                             img={setupimg}
+                        />
+                        : null}
+                        {this.props.load.has('Schedule') ?
+                        <Application
+                            title='代办事项'
+                            name='Schedule'
+                            body={<Schedule />}
+                            closeModule={this.props.closeModule}
+                            change_module={this.props.change_module}
+                            changeAppManagement={this.props.changeAppManagement}
+                            img={scheduleimg}
                         />
                         : null}
                 </div>

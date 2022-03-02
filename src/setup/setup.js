@@ -29,15 +29,6 @@ class Setup extends React.Component {
             if (res.user) {
                 this.setState({flag:true});
                 this.updateUserInfoDisplay(res.user.nickname, res.user.username, res.user.avatar);
-                localStorage.setItem('expireAt', res.user.expireAt);
-                if (res.user.apps){//如果用户有安装的app便加载
-                    this.props.updataUser(true,null,res.user.apps);
-                    localStorage.setItem('apps', JSON.stringify(res.user.apps));
-                } 
-                if(res.user.backgroundimgid){//如果用户有上传的照片便加载
-                    this.props.updataUser(true,res.user.backgroundimgid);
-                    localStorage.setItem('photos',JSON.stringify(res.user.backgroundimgid));
-                } 
             }
         });
     }

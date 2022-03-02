@@ -17,11 +17,11 @@ class AppStore extends React.Component {
 
     //安装App
     installApp(ev) {
+        ev.preventDefault();
         if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
             this.props.message('请先登录');
             return;
         }
-        ev.preventDefault();
         let appUrl = ev.target[0].value;
         const appName = ev.target[1].value;
         if (appUrl.split('//')[0] != 'https:' && appUrl.split('//')[0] != 'http:') appUrl = 'https://' + appUrl;

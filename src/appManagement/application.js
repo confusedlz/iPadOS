@@ -28,7 +28,7 @@ class Application extends React.Component {
     render() {
         return (
             <div><div className="appitems" onClick={()=>this.change_module()} onDragEnd={()=>this.close()} onDrag={ev => this.change(ev)} ref={this.Ref} draggable='true'>
-                <img src={this.props.img} alt={this.props.title}></img>
+                <img className="managementIcon" src={this.props.img} alt={this.props.title}></img>
                 <p className="appTitle">{this.props.title}</p>
                 {this.props.body}
             </div></div>
