@@ -13,7 +13,6 @@ class Notebook extends React.Component {
 
     componentDidMount() {
         this.setState({value:this.getText()});
-        // this.textRef.current.value = localStorage.getItem('notebookText');
     }
 
     //写入浏览器存储用户编辑的内容
@@ -25,13 +24,11 @@ class Notebook extends React.Component {
 
     //获取浏览器本地中存储的用户上次编辑的内容
     getText() {
-        // console.log('get');
         return localStorage.getItem('notebookText');
     }
 
     //删除备忘录中的内容
     deleteText() {
-        // console.log('delete');
         this.setState({ value: '' });
         localStorage.removeItem('notebookText');
     }

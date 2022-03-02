@@ -10,30 +10,29 @@ class LockScreen extends React.Component {
         this.display = this.display.bind(this);
     };
 
+    componentDidMount(){
+         this.lsRef.current.className = 'lockScreenMain';
+         setTimeout(()=>this.lsRef.current.className = 'lockScreenMain lockScreenMainDisplay',0);
+    }
+
     componentDidUpdate() {
-        if (this.props.display) {
-            this.lsRef.current.className = 'lockScreenMain lockScreenMainDisplay2';
-            setTimeout(()=>{this.lsRef.current.className = 'lockScreenMain lockScreenMainDisplay lockScreenMainDisplay2'},0);
-        }
     }
 
     display() {
-        this.lsRef.current.className = 'lockScreenMain lockScreenMainDisplay2';
-        setTimeout(()=>{this.lsRef.current.className = 'lockScreenMain'},1000);
+        this.lsRef.current.className = 'lockScreenMain';
+        setTimeout(()=>this.props.displayLockScreen(false),500);
     }
 
     render() {
         return (
-            <div>
-                <div className="lockScreenMain" ref={this.lsRef} onClick={this.display} style={{backgroundImage:'url('+this.props.backgroundImage+')'}}>
-                    <div className='right'>
-                        <span className="iconfont icon-wifi"></span>
-                        <span>80%</span>
-                        <span className="iconfont icon-80dianliang"></span>
-                    </div>
-                    <h1>{this.props.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h1>
-                    <p>{this.props.date.toLocaleDateString([], { month: 'long', day: 'numeric', weekday: 'long' })}</p>
+            <div className="lockScreenMain" ref={this.lsRef} onClick={this.display} style={{ backgroundImage: 'url(' + this.props.backgroundImage + ')' }}>
+                <div className='right'>
+                    <span className="iconfont icon-wifi"></span>
+                    <span>80%</span>
+                    <span className="iconfont icon-80dianliang"></span>
                 </div>
+                <h1>{this.props.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h1>
+                <p>{this.props.date.toLocaleDateString([], { month: 'long', day: 'numeric', weekday: 'long' })}</p>
             </div>
         );
     };

@@ -14,17 +14,21 @@ import wallpaper1 from '../public/img/wallpaper/wallpaper1.jpg';
 import wallpaper2 from '../public/img/wallpaper/wallpaper2.jpg';
 import wallpaper3 from '../public/img/wallpaper/wallpaper3.jpg';
 import Controller from './controller/controller';
+import AppManagement from './appManagement/appManagement';
 class Ipad extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             date: new Date(),
-            rouse:'',
-            close:false,
-            message:'',
-            display:false,
-            color:'#ffffff',
-            backgroundUrl: wallpaper2,
+            load:new Set(),
+            rouse:'',//唤醒某个应用
+            close:false,//是否隐藏应用
+            message:'',//消息提示
+            display:false,//锁屏
+            color:'#ffffff',//状态栏字体颜色
+            backgroundUrl: wallpaper2,//背景图片
+            appManagement:false,//管理状态栏是否显示
+            //已安装的app数据
             apps:[
                 {name:'天猫',url:'https://www.tmall.com',img:"https://qcv9se.file.qingfuwucdn.com/file/297f1ce4bcc1b2d5_1645017201904.jpg"},
                 {name:'掘金',url:'https://www.juejin.cn',img:"https://qcv9se.file.qingfuwucdn.com/file/c7021bc21078df7e_1645017190996.jpg"},
@@ -34,6 +38,7 @@ class Ipad extends React.Component {
                 {name:'字节跳动',url:'https://www.bytedance.com',img:"https://qcv9se.file.qingfuwucdn.com/file/a15a9f1c309a46c8_1645017181569.jpg"},
                 {name:'京东',url:'https://www.jd.com',img:'https://qcv9se.file.qingfuwucdn.com/file/62fceb7759010b90_1645017186649.png'},
             ],
+            //已存在的图片数据
             photos: [
                 wallpaper1,
                 wallpaper2,
@@ -48,6 +53,8 @@ class Ipad extends React.Component {
         this.installAPP=this.installAPP.bind(this);
         this.updataUser=this.updataUser.bind(this);
         this.changeClose=this.changeClose.bind(this);
+        this.closeModule=this.closeModule.bind(this);
+        this.changeAppManagement=this.changeAppManagement.bind(this);
     }
 
     componentDidMount() {//初始化显示
@@ -74,10 +81,27 @@ class Ipad extends React.Component {
         });
     }
 
-    //唤醒组件
-    change_module(module){
-        this.setState({rouse:module,color:'black'});
-        setTimeout(()=>{this.setState({rouse:''})},100);
+    //唤醒应用
+    async change_module(module){
+        await this.state.load.has(module)?null:this.setState({load:this.state.load.add(module)});
+        await this.setState({rouse:module,color:'black'});
+        await this.setState({ rouse: '' });
+    }
+
+    //关闭应用
+    closeModule(module){
+        const load=new Set();
+        this.state.load.forEach((val)=>{
+            if(val!=module) load.add(val);
+        });
+        this.setState({load:load});
+    }
+
+    //隐藏应用
+    changeClose(){
+        this.changeColor();
+        this.setState({close:true});
+        setTimeout(()=>{this.setState({close:false})},100);
     }
 
     //更改状态栏颜色
@@ -98,9 +122,8 @@ class Ipad extends React.Component {
     }
 
     //锁屏
-    displayLockScreen(){
-        this.setState({display:true});
-        setTimeout(()=>{this.setState({display:false})},100);
+    displayLockScreen(flag){
+        this.setState({display:flag});
     }
 
     //更新数据（图片，APP）
@@ -115,32 +138,35 @@ class Ipad extends React.Component {
         
     }
 
-    changeClose(){
-        this.changeColor();
-        this.setState({close:true});
-        setTimeout(()=>{this.setState({close:false})},100);
+    changeAppManagement(flag){
+        this.setState({appManagement:flag});
     }
 
     render() {
         return (
             <main style={{backgroundImage:'url('+this.state.backgroundUrl+')'}}>
                 {/* 锁屏界面 */}
-                <LockScreen date={this.state.date} display={this.state.display} backgroundImage={this.state.backgroundUrl}/>
+                {this.state.display?<LockScreen date={this.state.date} displayLockScreen={this.displayLockScreen} backgroundImage={this.state.backgroundUrl}/>:null}
                 {/* 顶部状态栏 */}
                 <Status date={this.state.date} fontColor={this.state.color} displayLockScreen={this.displayLockScreen}/>
                 {/* 消息提示 */}
-                <Message message={this.state.message}/>
+                {this.state.message!=''?<Message message={this.state.message}/>:null}
                 {/* 屏幕显示App */}
                 <AppContainer apps={this.state.apps}/>
-                {/* 主体应用 */}
-                <PhotoAlbum close={this.state.close} updataUser={this.updataUser} photos={this.state.photos} message={this.newMessage} changeColor={this.changeColor} rouse={this.state.rouse} changeBackground={this.changeBackground}/>
-                <Notebook close={this.state.close} date={this.state.date} changeColor={this.changeColor} rouse={this.state.rouse}/>
-                <AppStore close={this.state.close} installAPP={this.installAPP} apps={this.state.apps} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>
-                <Setup close={this.state.close} updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>
-                {/* 底部导航 */}
-                <Nav change_module={this.change_module}/>
 
-                <Controller changeClose={this.changeClose} color={this.state.color}/>
+                {/* 应用管理栏 */}
+                {this.state.appManagement?<AppManagement change_module={this.change_module} changeAppManagement={this.changeAppManagement} closeModule={this.closeModule} load={this.state.load} apps={this.state.apps} date={this.state.date} photos={this.state.photos}/>:null}
+                
+                {/* 主体应用 */}
+                {this.state.load.has('PhotoAlbum')?<PhotoAlbum close={this.state.close} updataUser={this.updataUser} photos={this.state.photos} message={this.newMessage} changeColor={this.changeColor} rouse={this.state.rouse} changeBackground={this.changeBackground}/>:null}
+                {this.state.load.has('Notebook')?<Notebook close={this.state.close} date={this.state.date} changeColor={this.changeColor} rouse={this.state.rouse}/>:null}
+                {this.state.load.has('AppStore')?<AppStore close={this.state.close} installAPP={this.installAPP} apps={this.state.apps} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
+                {this.state.load.has('Setup')?<Setup close={this.state.close} updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
+                
+                {/* 底部导航 */}
+                <Nav changeAppManagement={this.changeAppManagement} change_module={this.change_module}/>
+
+                <Controller changeAppManagement={this.changeAppManagement} changeClose={this.changeClose} color={this.state.color}/>
             </main>
         )
     };

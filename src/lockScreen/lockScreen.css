@@ -5,7 +5,7 @@
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
-    display: none;
+    display: block;
     z-index: 55;
     background-image: url(https://qcv9se.file.qingfuwucdn.com/file/2bb03faea56df0ef_1644985251802.jpg);
     background-position: 50%;
@@ -16,11 +16,6 @@
 
 .lockScreenMainDisplay{
     top: 0;
-    /* display: block; */
-}
-
-.lockScreenMainDisplay2{
-    display: block;
 }
 
 .lockScreenMain .right{

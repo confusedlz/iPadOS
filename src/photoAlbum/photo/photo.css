@@ -2,6 +2,10 @@
     display: none;
 }
 
+.photo input[type='radio']:checked+.photoItem{
+    background-color: #4BA2FF;
+}
+
 .photoItem{
     margin-bottom: 20px;
     width: 100%;
@@ -15,8 +19,4 @@
 .photoItem img{
     width: 100%;
     border-radius: 5px;
-}
-
-.photoItemFoucs{
-    background-color: #4BA2FF;
 }

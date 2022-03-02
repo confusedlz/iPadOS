@@ -9,11 +9,12 @@ class Controller extends React.Component{
     }
 
     hiddenModule(ev){
-        if(ev.pageY<window.innerHeight*0.8){
+        if(ev.pageY<window.innerHeight*0.7){
+            this.props.changeAppManagement(true);
+        }
+        if(ev.pageY<window.innerHeight*0.95){
             this.props.changeClose();
         }
-        // console.log(window.innerHeight)
-        // console.log(ev.pageY);
     }
 
     render(){

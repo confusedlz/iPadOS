@@ -14,10 +14,10 @@ class Nav extends React.Component {//底部导航栏
     render() {
         return (
             <div className="section">
-                <Module img_src={photoPng} display={this.props.change_module} module='PhotoAlbum'/>
-                <Module img_src={notebookPng} display={this.props.change_module} module='Notebook'/>
-                <Module img_src={appStorePng} display={this.props.change_module} module='AppStore'/>
-                <Module img_src={setupPng} display={this.props.change_module} module='Setup'/>
+                <Module img_src={photoPng} changeAppManagement={this.props.changeAppManagement} display={this.props.change_module} module='PhotoAlbum'/>
+                <Module img_src={notebookPng} changeAppManagement={this.props.changeAppManagement} display={this.props.change_module} module='Notebook'/>
+                <Module img_src={appStorePng} changeAppManagement={this.props.changeAppManagement} display={this.props.change_module} module='AppStore'/>
+                <Module img_src={setupPng} changeAppManagement={this.props.changeAppManagement} display={this.props.change_module} module='Setup'/>
             </div>
         )
 
