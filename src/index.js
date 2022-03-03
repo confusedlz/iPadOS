@@ -180,7 +180,7 @@ class Ipad extends React.Component {
                 {this.state.load.has('PhotoAlbum')?<PhotoAlbum close={this.state.close} updataUser={this.updataUser} photos={this.state.photos} message={this.newMessage} changeColor={this.changeColor} rouse={this.state.rouse} changeBackground={this.changeBackground}/>:null}
                 {this.state.load.has('Notebook')?<Notebook close={this.state.close} date={this.state.date} changeColor={this.changeColor} rouse={this.state.rouse}/>:null}
                 {this.state.load.has('AppStore')?<AppStore close={this.state.close} installAPP={this.installAPP} apps={this.state.apps} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
-                {this.state.load.has('Setup')?<Setup close={this.state.close} updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
+                {this.state.load.has('Setup')?<Setup closeModule={this.closeModule} close={this.state.close} updataUser={this.updataUser} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
                 {this.state.load.has('Schedule')?<Schedule close={this.state.close} rouse={this.state.rouse} changeColor={this.changeColor} message={this.newMessage}/>:null}
 
                 {/* 底部导航 */}

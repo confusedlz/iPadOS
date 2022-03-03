@@ -72,6 +72,7 @@ class Login extends React.Component {
                 localStorage.setItem('expireAt', res.userInfo.expireAt);
                 if (res.userInfo.backgroundimgid) localStorage.setItem('photos', JSON.stringify(res.userInfo.backgroundimgid));
                 if (res.userInfo.apps) localStorage.setItem('apps', JSON.stringify(res.userInfo.apps));
+                this.props.closeModule('Schedule');
             }
             else {
                 this.props.message('登录失败' + res.message);

@@ -42,8 +42,8 @@ class Setup extends React.Component {
 
     //根据用户是否登录显示个人信息栏或登录栏
     setupDisplay(flag) {
-        if (flag) return <SetupDisplay email={this.state.email} username={this.state.username} changeFlag={this.changeFlag} updataUser={this.props.updataUser} message={this.props.message} avatar={this.state.avatar} updateUserInfoDisplay={this.updataUserInfoDisplay}/>
-        else return <Login changeFlag={this.changeFlag} updataUser={this.props.updataUser} message={this.props.message} updateUserInfoDisplay={this.updataUserInfoDisplay}/>
+        if (flag) return <SetupDisplay closeModule={this.props.closeModule} email={this.state.email} username={this.state.username} changeFlag={this.changeFlag} updataUser={this.props.updataUser} message={this.props.message} avatar={this.state.avatar} updateUserInfoDisplay={this.updataUserInfoDisplay}/>
+        else return <Login closeModule={this.props.closeModule} changeFlag={this.changeFlag} updataUser={this.props.updataUser} message={this.props.message} updateUserInfoDisplay={this.updataUserInfoDisplay}/>
     }
 
     //修改显示
