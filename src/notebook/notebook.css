@@ -5,26 +5,6 @@
      background-color: #ffffff;
  }
 
- .notefile .notefile_item {
-     padding: 10px 20px;
-     width: 100%;
- }
-
- .notefile .notefile_foucs {
-     color: #ffffff;
-     background-color: #E4AF0b;
- }
-
- .notefile .notefile_item h3 {
-     margin: 2px 4px;
- }
-
- .notefile .notefile_item span {
-     margin: 0 3px;
-     font-size: 14px;
-     font-weight: 300;
- }
-
  .content_main {
      position: relative;
      height: 88%;
@@ -44,15 +24,48 @@
      color: red;
  }
 
- .content_main .delete i {
+ .content_main  .button i {
      font-size: 1.5rem;
  }
 
- .content_main .delete:hover {
-     background-color: #bbbbbb;
+ .content_main  .button:hover {
+     background-color: #d3d3d3;
  }
 
+ .content_main .new {
+    position: absolute;
+    right: 180px;
+    top: -5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 35px;
+    color: #E4AF0b;
+}
+
+.content_main .new i{
+    font-size: 1.8rem;
+}
+
+.content_main .save {
+    position: absolute;
+    right: 120px;
+    top: -5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 35px;
+    color: #E4AF0b;
+}
+
+
+
  .content_main p {
+     padding-top: 30px;
      margin-bottom: 10px;
      height: max-content;
      text-align: center;
@@ -60,12 +73,30 @@
      color: #929293;
  }
 
+.content_main .title{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    border: none;
+    display: block;
+    width: 85%;
+    font-size: 2rem;
+    font-weight: 700;
+    border: none;
+}
+
+.content_main .title:focus-visible{
+    border: none;
+    outline: none;
+}
+
  .content_main textarea {
      position: absolute;
      left: 0;
      right: 0;
-     margin: 0 auto;
-     min-height: 90%;
+     margin: 2.5rem auto;
+     min-height: 85%;
      width: 85%;
      resize: none;
      border: none;

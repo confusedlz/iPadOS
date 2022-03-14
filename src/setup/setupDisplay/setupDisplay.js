@@ -106,6 +106,7 @@ class SetupDisplay extends React.Component {
                 this.props.changeFlag(false);
                 this.props.updateUserInfoDisplay('notLogin','1234567890@qq.com',defaultAvatat);
                 this.props.closeModule('Schedule');
+                this.props.closeModule('Notebook');
             }
         });
     }

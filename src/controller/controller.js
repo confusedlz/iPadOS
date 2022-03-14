@@ -8,6 +8,11 @@ class Controller extends React.Component{
         this.hiddenModule=this.hiddenModule.bind(this);
     }
 
+    mouseView(ev){
+        // ev.preventDefault();
+        ev.dataTransfer.dropEffect = 'move';
+    }
+
     hiddenModule(ev){
         if(ev.pageY<window.innerHeight*0.7){
             this.props.changeAppManagement(true);
@@ -19,7 +24,7 @@ class Controller extends React.Component{
 
     render(){
         return(
-            <div className="controller" style={{backgroundColor:this.props.color}} onDragEnd={ev=>this.hiddenModule(ev)} draggable="true"></div>
+            <div className="controller" style={{backgroundColor:this.props.color}} onDragStart={ev=>this.mouseView(ev)} onDragEnd={ev=>this.hiddenModule(ev)} draggable="true"></div>
         );
     }
 }

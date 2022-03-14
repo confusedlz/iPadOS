@@ -19,6 +19,7 @@ class Message extends React.Component{
     render(){
         return(
             <div className='message' ref={this.messageRef}>
+                <i className="iconfont icon-tishi"></i> 
                 <strong>提示：</strong>
                 <span>{this.props.message}</span>
             </div>

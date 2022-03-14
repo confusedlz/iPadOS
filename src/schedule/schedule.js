@@ -125,7 +125,7 @@ class Schedule extends React.Component {
                             : null}
                         {this.state.todoList.size > 0 ?
                             <div className="todoList">
-                                <h3>已完成事项</h3>
+                                <h3>已完成事项:{((this.state.todoList.size)/(this.state.schedules.size+this.state.todoList.size)*100).toFixed()}%</h3>
                                 {this.add(this.state.todoList).map(val => {
                                     return <Scheduleitems changestate={this.changestate} key={val[1]} id={val[1]} value={val[0]} flag={true} />;;
                                 })}

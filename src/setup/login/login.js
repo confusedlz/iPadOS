@@ -32,22 +32,21 @@ class Login extends React.Component {
     //注册用户
     register(ev) {
         ev.preventDefault();
-        const username = ev.target[0].value;
+        const nickname = ev.target[0].value;
         const email = ev.target[1].value;
         const password = ev.target[2].value;
+        const username=email;
         const avatar = 'https://qcv9se.file.qingfuwucdn.com/file/5328c86c0a1fc874_1644925028875.png';
         inspirecloud.run('createUser', {
             username,
-            email,
             password,
-            avatar
         }).then(res => {
             if (res.success) {
                 this.props.message('注册成功');
                 this.props.changeFlag(true);
-                this.props.updateUserInfoDisplay(username, email, avatar);
-                // console.log(res.userInfo);
+                this.props.updateUserInfoDisplay(nickname, email, avatar);
                 localStorage.setItem('expireAt', res.expireAt);
+                inspirecloud.run('updateUserData',{nickname,email,avatar});
             }
             else {
                 this.props.message('注册失败' + res.message);
@@ -73,6 +72,7 @@ class Login extends React.Component {
                 if (res.userInfo.backgroundimgid) localStorage.setItem('photos', JSON.stringify(res.userInfo.backgroundimgid));
                 if (res.userInfo.apps) localStorage.setItem('apps', JSON.stringify(res.userInfo.apps));
                 this.props.closeModule('Schedule');
+                this.props.closeModule('Notebook');
             }
             else {
                 this.props.message('登录失败' + res.message);

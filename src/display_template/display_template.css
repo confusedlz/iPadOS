@@ -46,6 +46,7 @@
     padding: 10px;
     background-color: #F3F2F8;
     overflow: auto;
+    border-right: solid 2px #b5b4b9;
 }
 
 .display_template .catalogue::-webkit-scrollbar {
@@ -62,11 +63,11 @@
     background-color: #929293;
 }
 
-.display_template .after{
+/* .display_template .after{
     flex: 0 0 2px;
     height: 100vh;
     background-color: #b5b4b9;
-}
+} */
 
 .display_template .catalogue label{
     position: relative;

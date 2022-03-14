@@ -12,25 +12,24 @@
 
 .appManagement .appManagementMain {
     position: relative;
-    top: 5vh;
-    bottom: 0;
+    top: 40px;
     left: 0;
     right: 0;
     margin: auto;
     width: 80vw;
-    max-height: 80vh;
+    height: 85vh;
     box-sizing: border-box;
     display: grid;
     justify-content: space-between;
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-    grid-template-rows: minmax(9rem, 1fr) minmax(10rem, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-rows: minmax(50%, 1fr) minmax(50%, 1fr);
     grid-auto-flow: column;
 }
 
 .appManagement .appManagementMain .appitems{
     position: relative;
-    width: 310px;
-    height: 270px;
+    width: 16vw;
+    height: 33vh;
     cursor: pointer;
     border-radius: 10px;
     overflow: hidden;
@@ -54,8 +53,8 @@
     position: absolute;
     top: 25px;
     display: block;
-    transform: scale(0.2, 0.3);
+    transform: scale(0.155, 0.27);
     transform-origin: top left;
-    border-radius: 15px;
+    border-radius: 10px;
     z-index: 20;
 }
