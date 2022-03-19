@@ -14,7 +14,7 @@ class AppContainer extends React.Component {
         return (
             <div className="appContainer">
                 {apps.map(data => {
-                    return <App key={data.url} name={data.name} url={data.url} img={data.img} />
+                    return <App key={data._id?data._id:data.url} name={data.name} url={data.url} img={data.img} />
                 })
                 }
             </div>

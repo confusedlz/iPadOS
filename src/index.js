@@ -1,3 +1,7 @@
+import { unstable_ClassNameGenerator } from '@mui/material/className';
+
+unstable_ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -16,9 +20,8 @@ import wallpaper3 from '../public/img/wallpaper/wallpaper3.jpg';
 import Controller from './controller/controller';
 import AppManagement from './appManagement/appManagement';
 import Schedule from './schedule/schedule';
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from './request/request';
+
 class Ipad extends React.Component {
     constructor(props) {
         super(props);
@@ -66,19 +69,23 @@ class Ipad extends React.Component {
             () => this.tick(),
             1000
         );
+       
         if (localStorage.getItem('background')) this.setState({ backgroundUrl: localStorage.getItem('background') });
-        //根据用户是否登录进行初始化
-        inspirecloud.run('getUserInfo', {}).then(res => {
+        
+        //根据用户是否登录进行初始化 
+        request('getUserInfo').then(res=>{
             if (res.user) {
                 localStorage.setItem('expireAt', res.user.expireAt);
-                if (res.user.apps) {//如果用户有安装的app便加载
-                    this.updataUser(true, null, res.user.apps);
-                    localStorage.setItem('apps', JSON.stringify(res.user.apps));
-                }
                 if (res.user.backgroundimgid) {//如果用户有上传的照片便加载
                     this.updataUser(true, res.user.backgroundimgid);
                     localStorage.setItem('photos', JSON.stringify(res.user.backgroundimgid));
                 }
+            }
+        });
+        
+        request('getApps').then(res => {
+            if (res.success) {
+                this.setState({apps:res.appsItemList});
             }
         });
     }
@@ -88,8 +95,8 @@ class Ipad extends React.Component {
     }
 
     //添加APP
-    installAPP(name, url) {
-        this.setState({ apps: [...this.state.apps, { name: name, url: url, img: '' }] });
+    installAPP(_id,name, url) {
+        this.setState({ apps: [...this.state.apps, { _id:_id, name: name, url: url, img: '' }] });
     }
 
     //更新时间
@@ -147,11 +154,19 @@ class Ipad extends React.Component {
     //更新数据（图片，APP）
     updataUser(flag, photos, apps) {
         if (flag) {
-            if (apps) this.setState({ apps: [...this.state.apps, ...apps] });
+            if (apps) this.setState({ apps: apps });
             if (photos) this.setState({ photos: [...this.state.photos, ...photos] });
         }
         else {
-            this.setState({ apps: [...this.state.apps.slice(0, 7)], photos: [...this.state.photos.slice(0, 3)] });
+            this.setState({ apps: [
+            { name: '天猫', url: 'https://www.tmall.com', img: "https://qcv9se.file.qingfuwucdn.com/file/297f1ce4bcc1b2d5_1645017201904.jpg" },
+            { name: '掘金', url: 'https://www.juejin.cn', img: "https://qcv9se.file.qingfuwucdn.com/file/c7021bc21078df7e_1645017190996.jpg" },
+            { name: '淘宝', url: 'https://www.taobao.com', img: "https://qcv9se.file.qingfuwucdn.com/file/2e043f780a8927ee_1645017197806.jpg" },
+            { name: '百度', url: 'https://baidu.com', img: "https://qcv9se.file.qingfuwucdn.com/file/184089bdbafab94f_1645017125115.jpg" },
+            { name: '哔哩哔哩', url: 'https://www.bilibili.com', img: "https://qcv9se.file.qingfuwucdn.com/file/1883b8cded0c79de_1645017176061.jpg" },
+            { name: '字节跳动', url: 'https://www.bytedance.com', img: "https://qcv9se.file.qingfuwucdn.com/file/a15a9f1c309a46c8_1645017181569.jpg" },
+            { name: '京东', url: 'https://www.jd.com', img: 'https://qcv9se.file.qingfuwucdn.com/file/62fceb7759010b90_1645017186649.png' },
+        ], photos: [...this.state.photos.slice(0, 3)] });
         }
 
     }

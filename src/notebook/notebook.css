@@ -24,43 +24,43 @@
      color: red;
  }
 
- .content_main  .button i {
+ .content_main .button i {
      font-size: 1.5rem;
  }
 
- .content_main  .button:hover {
+ .content_main .button:hover {
      background-color: #d3d3d3;
  }
 
  .content_main .new {
-    position: absolute;
-    right: 180px;
-    top: -5px;
-    width: 35px;
-    height: 35px;
-    border-radius: 35px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 35px;
-    color: #E4AF0b;
-}
+     position: absolute;
+     right: 180px;
+     top: -5px;
+     width: 35px;
+     height: 35px;
+     border-radius: 35px;
+     cursor: pointer;
+     text-align: center;
+     line-height: 35px;
+     color: #E4AF0b;
+ }
 
-.content_main .new i{
-    font-size: 1.8rem;
-}
+ .content_main .new i {
+     font-size: 1.8rem;
+ }
 
-.content_main .save {
-    position: absolute;
-    right: 120px;
-    top: -5px;
-    width: 35px;
-    height: 35px;
-    border-radius: 35px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 35px;
-    color: #E4AF0b;
-}
+ .content_main .save {
+     position: absolute;
+     right: 120px;
+     top: -5px;
+     width: 35px;
+     height: 35px;
+     border-radius: 35px;
+     cursor: pointer;
+     text-align: center;
+     line-height: 35px;
+     color: #E4AF0b;
+ }
 
 
 
@@ -73,29 +73,40 @@
      color: #929293;
  }
 
-.content_main .title{
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    border: none;
-    display: block;
-    width: 85%;
+ .content_main .textField {
+     position: absolute;
+     top: 50px;
+     left: 0;
+     right: 0;
+     margin: 0 auto;
+     border: none;
+     display: block;
+     width: 85%;
+     font-size: 2rem;
+     font-weight: 700;
+     /* background-color: #E4AF0b; */
+ }
+
+ .content_main .textField input{
     font-size: 2rem;
     font-weight: 700;
-    border: none;
-}
+ }
 
-.content_main .title:focus-visible{
-    border: none;
-    outline: none;
-}
+ .content_main .textField label{
+    font-size: 2rem;
+    font-weight: 700;
+ }
+
+ .content_main .title:focus-visible {
+     border: none;
+     outline: none;
+ }
 
  .content_main textarea {
      position: absolute;
      left: 0;
      right: 0;
-     margin: 2.5rem auto;
+     margin: 4.2rem auto 2.5rem auto;
      min-height: 85%;
      width: 85%;
      resize: none;

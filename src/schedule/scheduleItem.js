@@ -1,7 +1,5 @@
 import React from "react";
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from "../request/request";
 
 class Scheduleitems extends React.Component {
     constructor(props) {
@@ -12,7 +10,7 @@ class Scheduleitems extends React.Component {
     //删除事项
     delete() {
         const id=this.props.id;
-        inspirecloud.run('deleteSchedule', {
+        request('deleteSchedule', {
             id
         }).then(res => {
             if (res.success) {
@@ -25,7 +23,7 @@ class Scheduleitems extends React.Component {
     finishSchedule(){
         const id=this.props.id;
         const flag=!this.props.flag;
-        inspirecloud.run('changeSchedule', {
+        request('changeSchedule', {
             id,
             flag
         }).then(res => {

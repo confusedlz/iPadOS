@@ -3,9 +3,7 @@ import './schedule.css';
 import Display_template from "../display_template/display_template";
 import todoList from '../../public/img/todolist.png';
 import Scheduleitems from "./scheduleItem";
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from "../request/request";
 
 class Schedule extends React.Component {
     constructor(props) {
@@ -22,7 +20,7 @@ class Schedule extends React.Component {
     componentDidMount() {
         //数据初始化
         if (localStorage.getItem('expireAt') || new Date().getTime() < localStorage.getItem('expireAt')) {
-            inspirecloud.run('getSchedule').then(res => {
+            request('getSchedule').then(res => {
                 if (res.success) {
                     const schedules = new Map();
                     const todoList = new Map();
@@ -66,7 +64,7 @@ class Schedule extends React.Component {
             return;
         }
         const title = ev.target[0].value;
-        inspirecloud.run('addSchedule', {
+        request('addSchedule', {
             title
         }).then(res => {
             if (res.success) {
@@ -95,7 +93,7 @@ class Schedule extends React.Component {
 
     //清空
     clear(){
-        inspirecloud.run('clearSchedule').then(res => {
+        request('clearSchedule').then(res => {
             if (res.success) {
                 this.props.message('清空成功');
                 this.setState({schedules:new Map(),todoList:new Map()});

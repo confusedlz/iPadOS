@@ -5,9 +5,7 @@ import SetupDisplay from "./setupDisplay/setupDisplay";
 import Login from "./login/login";
 import defaultAvatat from '../../public/img/avatar.png';
 import setupInfoimg from '../../public/img/setupimg/setupInfo.jpg';
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from "../request/request";
 
 class Setup extends React.Component {
     constructor(props) {
@@ -25,7 +23,7 @@ class Setup extends React.Component {
 
     componentDidMount() {
         //根据用户是否登录进行初始化
-        inspirecloud.run('getUserInfo', {}).then(res => {
+        request('getUserInfo', {}).then(res => {
             if (res.user) {
                 this.setState({flag:true});
                 this.updateUserInfoDisplay(res.user.nickname, res.user.username, res.user.avatar);

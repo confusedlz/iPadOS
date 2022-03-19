@@ -34,6 +34,11 @@ import '../../public/fonticon/iconfont.css';
         setTimeout(()=>{this.dtRef.current.className='display_template'},200);
     }
 
+    //搜索
+    search(ev){
+        this.props.search(ev.target.value);
+    }
+
     render() {
         return (
             //显示模板
@@ -44,7 +49,7 @@ import '../../public/fonticon/iconfont.css';
                         <h1>{this.props.title}</h1>
                         <label>
                             <i className="iconfont icon-sousuo"></i>
-                            <input type='text' placeholder='搜索'/>
+                            <input onChange={ev=>this.search(ev)} type='text' placeholder='搜索'/>
                         </label>
                         {this.props.catalogue}
                     </div>

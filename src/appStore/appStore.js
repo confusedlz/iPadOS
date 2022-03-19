@@ -2,15 +2,13 @@ import React from "react";
 import './appStore.css';
 import Display_template from "../display_template/display_template";
 import InstalledAppitem from "./installAppitem/installAppitem";
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from "../request/request";
 
 class AppStore extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            search:''
         };
         this.installApp = this.installApp.bind(this);
     }
@@ -25,13 +23,13 @@ class AppStore extends React.Component {
         let appUrl = ev.target[0].value;
         const appName = ev.target[1].value;
         if (appUrl.split('//')[0] != 'https:' && appUrl.split('//')[0] != 'http:') appUrl = 'https://' + appUrl;
-        inspirecloud.run('updateUserApp', {
+        request('addApp', {
             appUrl,
             appName
         }).then(res => {
             if(res.success){
                 this.props.message('安装成功');
-                this.props.installAPP(appName,appUrl);
+                this.props.installAPP(res.id,appName,appUrl);
             }
             else{
                 this.props.message('安装失败'+res.message);
@@ -39,8 +37,23 @@ class AppStore extends React.Component {
         });
     }
 
-    render() {
+    //搜索显示
+    display(){
         const apps = this.props.apps;
+        if(this.state.search!=''){
+            const str=RegExp(this.state.search)
+            return apps.map(app => {
+                if(str.test(app.name))
+                    return <InstalledAppitem key={app._id?app._id:app.url} url={app.url} name={app.name} img={app.img} />
+            })
+        }else{
+            return apps.map(app => {
+                return <InstalledAppitem key={app._id?app._id:app.url} url={app.url} name={app.name} img={app.img}/>
+            })
+        }
+    }
+
+    render() {
         return (
             <Display_template
                 close={this.props.close}
@@ -49,12 +62,11 @@ class AppStore extends React.Component {
                 name='AppStore'
                 title='AppStore'
                 background_color='#F3F2F8'
+                search={value=>this.setState({search:value})}
                 catalogue={
                     <div className="installedApp">
                         <h3>已安装应用</h3>
-                        {apps.map(app => {
-                            return <InstalledAppitem key={app.url} url={app.url} name={app.name} img={app.img} />
-                        })}
+                        {this.display()}
                     </div>
                 }
                 content={

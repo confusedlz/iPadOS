@@ -2,9 +2,7 @@ import React from "react";
 import './setupDisplay.css';
 import userInfoimg from '../../../public/img/setupimg/userInfo.jpg';
 import defaultAvatat from '../../../public/img/avatar.png';
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from "../../request/request";
 
 class SetupDisplay extends React.Component {
     constructor(props) {
@@ -46,7 +44,7 @@ class SetupDisplay extends React.Component {
             else if (this.state.email === username || !username) user = { nickname };
             else user = { username, nickname };
             // console.log(user);
-            inspirecloud.run('updateUserData', user).then(res => {
+            request('updateUserData', user).then(res => {
                 if (res.success) {
                     this.props.message('修改个人信息成功');
                     this.props.updateUserInfoDisplay(nickname, username);
@@ -65,7 +63,7 @@ class SetupDisplay extends React.Component {
             this.props.message('请选择照片');
         }
         else {
-            inspirecloud.run('updateUserAvatar', formData, {
+            request('updateUserAvatar', formData, {
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -96,7 +94,7 @@ class SetupDisplay extends React.Component {
 
     //退出登录
     loginOut() {
-        inspirecloud.run('logout', {}).then(res => {
+        request('logout', {}).then(res => {
             if (res.success) {
                 this.props.message('退出登录成功');
                 this.props.updataUser(false);

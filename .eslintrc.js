@@ -22,6 +22,12 @@ module.exports = {
     "rules": {
         "react/prop-types": { "ignore": true },
         "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
-        "react-hooks/exhaustive-deps": "warn" // 检查 effect 的依赖
+        "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
+        "no-restricted-imports": [
+            "error",
+            {
+              "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+            }
+        ]
     }
 }

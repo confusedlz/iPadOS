@@ -3,9 +3,7 @@ import './photoAlbum.css';
 import Display_template from '../display_template/display_template';
 import '../../public/fonticon/iconfont.css';
 import Photo from "./photo/photo";
-const InspireCloud = require('@byteinspire/js-sdk')
-const serviceId = 'qcv9se';
-const inspirecloud = new InspireCloud({ serviceId });
+import request from "../request/request";
 
 class PhotoAlbum extends React.Component {
     constructor(props) {
@@ -33,19 +31,17 @@ class PhotoAlbum extends React.Component {
         if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
             this.props.message('请先登录');
         } else {
-            inspirecloud.run('updateUserimg', formData, {
+            request('updateUserimg', formData, {
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
             }).then(res => {
                 if (res.success) {
                     this.props.updataUser(true,[res.url]);
-                    // this.setState({ photos: [...this.props.photos, res.url] });
                     this.props.message('上传成功');
                     if (localStorage.getItem('photos')){
                         if(typeof localStorage.getItem('photos')=='object') localStorage.setItem('photos',JSON.stringify(...localStorage.getItem('photos'),res.url));
                         else localStorage.setItem('photos',JSON.stringify(localStorage.getItem('photos'),res.url));
-                        // console.log(this.state.photos);
                     }
                     else localStorage.setItem('photos',JSON.stringify(res.url));
                     
