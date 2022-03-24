@@ -5,7 +5,7 @@ import Notefile from "./notefile/notefile";
 import TextField from '@mui/material/TextField';
 import request from "../request/request";
 
-function Notebook(props) {
+const Notebook=(props) => {
     const [options] = useState({ year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     const [notebook, setNotebook] = useState(new Map());
     const [id, setId] = useState('');
@@ -28,7 +28,7 @@ function Notebook(props) {
     }, []);
 
     //更新对应的notefile的内容
-    function setText(ev) {
+    const setText=(ev) => {
         setDatas(ev.target.value);
         const data = [notebook.get(id)[0], ev.target.value, new Date()];
         setNotebook(new Map(
@@ -37,7 +37,7 @@ function Notebook(props) {
     }
 
     //更新对应notefile的标题
-    function updateTitle(ev) {
+    const updateTitle=(ev) => {
         setTitle(ev.target.value);
         const data = [ev.target.value, notebook.get(id)[1], new Date()];
         setNotebook(new Map(
@@ -46,7 +46,7 @@ function Notebook(props) {
     }
 
     //删除备忘录中的内容
-    function deleteText() {
+    const deleteText=() => {
         setDatas('');
         const data = [notebook.get(id)[0], '', new Date()];
         setNotebook(new Map(
@@ -55,7 +55,7 @@ function Notebook(props) {
     }
 
     //新建文件
-    function newNoteFile() {
+    const newNoteFile=() => {
         if (!notebook.has('1')) {
             const newn = new Map().set('1', ['', '', new Date()]);
             notebook.forEach((v, k) => newn.set(k, v));
@@ -68,7 +68,7 @@ function Notebook(props) {
     }
 
     //修改选中文件
-    function changFoucs(id, title, datas) {
+    const changFoucs=(id, title, datas) => {
         setId(id);
         setTitle(title);
         setDatas(datas);
@@ -80,7 +80,7 @@ function Notebook(props) {
     }
 
     //数据类型转换(Map=>Array)
-    function convert() {
+    const convert=() => {
         const notebookArray = [];
         notebook.forEach((val, key) => {
             notebookArray.push([key, val])
@@ -89,7 +89,7 @@ function Notebook(props) {
     }
 
     //保存文件
-    function save(flag) {
+    const save=(flag) => {
         console.log(flag, id, title);
         if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
             this.props.message('请先登录');
@@ -129,7 +129,7 @@ function Notebook(props) {
     }
 
     //删除文件
-    function deleteNotefile() {
+    const deleteNotefile=() => {
         request('deleteNote', {
             id
         }).then(res => {

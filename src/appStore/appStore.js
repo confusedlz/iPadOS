@@ -44,11 +44,11 @@ class AppStore extends React.Component {
             const str=RegExp(this.state.search)
             return apps.map(app => {
                 if(str.test(app.name))
-                    return <InstalledAppitem key={app._id?app._id:app.url} url={app.url} name={app.name} img={app.img} />
+                    return <InstalledAppitem unInstall={this.props.unInstall} key={app._id?app._id:app.url} id={app._id?app._id:null} url={app.url} name={app.name} img={app.img} />
             })
         }else{
             return apps.map(app => {
-                return <InstalledAppitem key={app._id?app._id:app.url} url={app.url} name={app.name} img={app.img}/>
+                return <InstalledAppitem unInstall={this.props.unInstall} key={app._id?app._id:app.url} id={app._id?app._id:null} url={app.url} name={app.name} img={app.img}/>
             })
         }
     }

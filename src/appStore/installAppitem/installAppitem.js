@@ -1,5 +1,6 @@
 import React from "react";
 import './installAppitem.css';
+import request from '../../request/request';
 
 class InstalledAppitem extends React.Component {
     constructor(props) {
@@ -17,12 +18,23 @@ class InstalledAppitem extends React.Component {
         }
     }
 
+    delete(){
+        const id=this.props.id;
+        request('deleteApp',id).then(res=>{
+            if(res.success){
+                this.props.unInstall(id);
+            }
+        });
+    }
+
     render() {
         return (
             <div className="installedAppitem">
                 {this.choose()}
                 <h2>{this.props.name}</h2>
                 <p>{this.props.url}</p>
+                {(typeof(this.props.img)!="undefined"&&this.props.img!='')?null
+                :<div onClick={() => this.delete()} className="delete"><i className="iconfont icon-shanchu"></i></div>}
             </div>
         );
     };

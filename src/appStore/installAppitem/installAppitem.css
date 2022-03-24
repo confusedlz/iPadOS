@@ -1,8 +1,10 @@
 .installedAppitem{
+    position: relative;
     margin-bottom: 10px;
     padding: 3px 20px;
     border-radius: 10px;
     background-color: #ffffff;
+    overflow: hidden;
 }
 
 .installedAppitem img{
@@ -36,4 +38,29 @@
 .installedAppitem p{
     margin: 5px 0 10px 0;
     font-weight: 300;
+}
+
+.installedAppitem .delete{
+    position: absolute;
+    height: 100%;
+    line-height: 75px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    width: 0;
+    background-color: #f56468;
+    color: #fff;
+    text-align: center;
+    transition: all ease-in 0.25s;
+}
+
+.installedAppitem .delete i{
+    font-size: 2rem;
+}
+
+.installedAppitem:hover .delete{
+    width: 44px;
+    opacity: 1;
 }
