@@ -1,7 +1,7 @@
 import React from "react";
 import './lockScreen.css';
 import '../../public/fonticon/iconfont.css';
-const calendar=require('./calendar');
+const calendar=require('./calendar');//引用他人公农历转换
 
 //锁屏组件
 class LockScreen extends React.Component {
