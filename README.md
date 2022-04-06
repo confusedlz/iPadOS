@@ -6,4 +6,4 @@
 
 #### 线上演示地址
 
-https://ipads_react.app.cloudendpoint.cn
+https://ipados_react.app.cloudendpoint.cn
