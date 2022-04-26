@@ -4,8 +4,9 @@ import Display_template from "../display_template/display_template";
 import Notefile from "./notefile/notefile";
 import TextField from '@mui/material/TextField';
 import request from "../request/request";
+import loginState from "../request/user/loginState";
 
-const Notebook=(props) => {
+const Notebook = (props) => {
     const [options] = useState({ year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     const [notebook, setNotebook] = useState(new Map());
     const [id, setId] = useState('');
@@ -13,22 +14,25 @@ const Notebook=(props) => {
     const [title, setTitle] = useState('');
     const [searchFlag, setSearchFlag] = useState();
 
-    useEffect(async() => {
-        await request('getUserNote').then(res => {
-            if (res.success) {
-                const newn = new Map();
-                res.noteBookItemList.map(data => {
-                    newn.set(data._id, [data.title, data.datas, new Date(data.updatedAt)]);
-                });
-                changFoucs(newn.entries().next().value[0], newn.entries().next().value[1][0], newn.entries().next().value[1][1]);
-                setNotebook(newn);
-            }
-        });
-        if(notebook.size<1) newNoteFile();
+    useEffect(async () => {
+        const { user } = await loginState();
+        if (user) {
+            await request('getUserNote', { uid: user.uid }).then(res => {
+                if (res.success) {
+                    const newn = new Map();
+                    res.res.data.forEach(data => {
+                        newn.set(data._id, [data.title, data.datas, new Date(data.updatedAt)]);
+                    });
+                    changFoucs(newn.entries().next().value[0], newn.entries().next().value[1][0], newn.entries().next().value[1][1]);
+                    setNotebook(newn);
+                    if (res.res.data.length < 1) newNoteFile();
+                }
+            });
+        }
     }, []);
 
     //更新对应的notefile的内容
-    const setText=(ev) => {
+    const setText = (ev) => {
         setDatas(ev.target.value);
         const data = [notebook.get(id)[0], ev.target.value, new Date()];
         setNotebook(new Map(
@@ -37,7 +41,7 @@ const Notebook=(props) => {
     }
 
     //更新对应notefile的标题
-    const updateTitle=(ev) => {
+    const updateTitle = (ev) => {
         setTitle(ev.target.value);
         const data = [ev.target.value, notebook.get(id)[1], new Date()];
         setNotebook(new Map(
@@ -46,7 +50,7 @@ const Notebook=(props) => {
     }
 
     //删除备忘录中的内容
-    const deleteText=() => {
+    const deleteText = () => {
         setDatas('');
         const data = [notebook.get(id)[0], '', new Date()];
         setNotebook(new Map(
@@ -55,7 +59,7 @@ const Notebook=(props) => {
     }
 
     //新建文件
-    const newNoteFile=() => {
+    const newNoteFile = () => {
         if (!notebook.has('1')) {
             const newn = new Map().set('1', ['', '', new Date()]);
             notebook.forEach((v, k) => newn.set(k, v));
@@ -68,7 +72,7 @@ const Notebook=(props) => {
     }
 
     //修改选中文件
-    const changFoucs=(id, title, datas) => {
+    const changFoucs = (id, title, datas) => {
         setId(id);
         setTitle(title);
         setDatas(datas);
@@ -80,7 +84,7 @@ const Notebook=(props) => {
     }
 
     //数据类型转换(Map=>Array)
-    const convert=() => {
+    const convert = () => {
         const notebookArray = [];
         notebook.forEach((val, key) => {
             notebookArray.push([key, val])
@@ -89,15 +93,20 @@ const Notebook=(props) => {
     }
 
     //保存文件
-    const save=(flag) => {
-        console.log(flag, id, title);
-        if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
+    const save = async (flag) => {
+        console.log(flag, id, title, datas);
+        const { user } = await loginState();
+        /*if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
+            this.props.message('请先登录');
+            return;
+        }*/
+        if (!user) {
             this.props.message('请先登录');
             return;
         }
         if (id === '1') {
             request('addNote', {
-                title, datas
+                title, datas, uid: user.uid, updatedAt: new Date()
             }).then(res => {
                 if (flag) return;
                 if (res.success) {
@@ -129,7 +138,7 @@ const Notebook=(props) => {
     }
 
     //删除文件
-    const deleteNotefile=() => {
+    const deleteNotefile = () => {
         request('deleteNote', {
             id
         }).then(res => {

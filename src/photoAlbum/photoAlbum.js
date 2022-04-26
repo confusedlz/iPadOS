@@ -4,6 +4,7 @@ import Display_template from '../display_template/display_template';
 import '../../public/fonticon/iconfont.css';
 import Photo from "./photo/photo";
 import request from "../request/request";
+import loginState from "../request/user/loginState";
 
 class PhotoAlbum extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class PhotoAlbum extends React.Component {
         };
         this.changeView = this.changeView.bind(this);
         this.fileRef = React.createRef();
+        this.postPhoto=this.postPhoto.bind(this);
     }
 
     //修改预览
@@ -27,10 +29,22 @@ class PhotoAlbum extends React.Component {
     }
 
     //上传照片
-    postPhoto(formData) {
-        if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
+    async postPhoto(file,filename) {
+        const loginState1 =await loginState();
+        if (!loginState1) {
             this.props.message('请先登录');
         } else {
+            const user=loginState1.user;
+            filename=encodeURI(filename);
+            request('uploadPhoto',{file,uid:user.uid,filename},true).then(res=>{
+                if (res.success) {
+                    this.props.message('上传成功');
+                    this.props.updataUser(true,[res.url]);
+                }
+                else {
+                    this.props.message('上传失败');
+                }
+            });/*
             request('updateUserimg', formData, {
                 headers: {
                     'content-type': 'multipart/form-data',
@@ -49,7 +63,7 @@ class PhotoAlbum extends React.Component {
                 else {
                     this.props.message('上传失败');
                 }
-            });
+            });*/
         }
     }
 
@@ -61,10 +75,21 @@ class PhotoAlbum extends React.Component {
     //获取文件
     getfile(ev) {
         const fileData = ev.target.files[0];
-        const formData = new FormData();
+        /*const formData = new FormData();
         // 添加文件
         formData.append('myFile', fileData);
-        this.postPhoto(formData);
+        this.postPhoto(formData);*/
+        const fileToBase64 = (fileData, fun) => {
+            const fr = new FileReader();
+            const filename = fileData.name;
+            // fr.readAsDataURL(fileData);
+            fr.readAsArrayBuffer(fileData);
+            fr.onload=ev=>{
+                const buf=Buffer.from(ev.target.result);
+                fun(buf,filename);
+            };
+        }
+        fileToBase64(fileData,this.postPhoto);
     }
 
     render() {

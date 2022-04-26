@@ -3,6 +3,7 @@ import './appStore.css';
 import Display_template from "../display_template/display_template";
 import InstalledAppitem from "./installAppitem/installAppitem";
 import request from "../request/request";
+import loginState from '../request/user/loginState';
 
 class AppStore extends React.Component {
     constructor(props) {
@@ -14,9 +15,14 @@ class AppStore extends React.Component {
     }
 
     //安装App
-    installApp(ev) {
+    async installApp(ev) {
         ev.preventDefault();
-        if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
+        /*if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
+            this.props.message('请先登录');
+            return;
+        }*/
+        const {user}=await loginState();
+        if(!user){
             this.props.message('请先登录');
             return;
         }
@@ -24,12 +30,13 @@ class AppStore extends React.Component {
         const appName = ev.target[1].value;
         if (appUrl.split('//')[0] != 'https:' && appUrl.split('//')[0] != 'http:') appUrl = 'https://' + appUrl;
         request('addApp', {
-            appUrl,
-            appName
+            url:appUrl,
+            name:appName,
+            uid:user.uid
         }).then(res => {
             if(res.success){
                 this.props.message('安装成功');
-                this.props.installAPP(res.id,appName,appUrl);
+                this.props.installAPP(res.res.id,appName,appUrl);
             }
             else{
                 this.props.message('安装失败'+res.message);

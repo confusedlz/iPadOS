@@ -21,8 +21,6 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.5.0",
-    "koa": "^2.13.4",
-    "koa-static": "^5.0.0",
     "style-loader": "^3.3.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.68.0",
@@ -31,12 +29,17 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@byteinspire/js-sdk": "^0.5.1",
+    "@cloudbase/js-sdk": "^1.7.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@material-ui/styles": "^4.11.4",
     "@mui/material": "^5.5.1",
+    "koa": "^2.13.4",
+    "koa-static": "^5.0.0",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "polyfill": "^0.1.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "serverless-http": "^3.0.1"
   }
 }

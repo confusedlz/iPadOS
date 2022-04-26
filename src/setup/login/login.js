@@ -1,6 +1,8 @@
 import React from "react";
 import './login.css';
-import request from "../../request/request";
+import AlertDialog from "./AlertDialog";
+import loginByEmail from "../../request/user/loginByEmail";
+import createUser from "../../request/user/createUser";
 
 class Login extends React.Component {
     constructor(props) {
@@ -8,7 +10,10 @@ class Login extends React.Component {
         this.state = {
             loginClassName: "login",
             registerClassName: 'register',
+            open:false,
+            nickName:''
         };
+        this.verify=this.verify.bind(this);
     }
 
     //显示注册框
@@ -30,12 +35,18 @@ class Login extends React.Component {
     //注册用户
     register(ev) {
         ev.preventDefault();
-        const nickname = ev.target[0].value;
-        const email = ev.target[1].value;
-        const password = ev.target[2].value;
-        const username=email;
-        const avatar = 'https://qcv9se.file.qingfuwucdn.com/file/5328c86c0a1fc874_1644925028875.png';
-        request('createUser', {
+        const nickName = ev.target[0].value;
+        const email = ev.target[0].value;
+        const password = ev.target[1].value;
+        const avatar = 'https://6970-ipad-2gf1azug01855b03-1304065141.tcb.qcloud.la/usersAvater/avatar.png?sign=b7468390bcca794d3d12d1523f041ca7&t=1650963604';
+        createUser(email, password)
+        .then(()=>{
+            this.setState({open:true,nickName:nickName});
+            this.registerDisplay(true);
+        })
+        .catch(e=>this.props.message('注册失败'+e));
+
+       /* request('createUser', {
             username,
             password,
         }).then(res => {
@@ -44,19 +55,37 @@ class Login extends React.Component {
                 this.props.changeFlag(true);
                 this.props.updateUserInfoDisplay(nickname, email, avatar);
                 localStorage.setItem('expireAt', res.expireAt);
-                request('updateUserData',{nickname,email,avatar});
+                request('updateUserData', { nickname, email, avatar });
             }
             else {
                 this.props.message('注册失败' + res.message);
             }
-        });
+        });*/
+    }
+
+    //验证成功
+    verify(){
+        this.registerDisplay(false);
     }
 
     //登录
     login(ev) {
         ev.preventDefault();
-        const username = ev.target[0].value;
+        const email = ev.target[0].value;
         const password = ev.target[1].value;
+        loginByEmail(email,password).then(loginState=>{
+            if(loginState.user){
+                this.props.message('登录成功');
+                this.props.changeFlag(true);
+                this.props.updateUserInfoDisplay(loginState.user.nickName===''?"notNickName":loginState.user.nickName, loginState.user.email, loginState.user.avatarUrl);
+                this.props.closeModule('Schedule');
+                this.props.closeModule('Notebook');
+            }else{
+                this.props.message('登录失败' + res.message);
+            }
+        });
+
+        /*
         request('loginByEmail', {
             username,
             password
@@ -64,10 +93,10 @@ class Login extends React.Component {
             if (res.success) {
                 this.props.message('登录成功');
                 this.props.changeFlag(true);
-                this.props.updateUserInfoDisplay(res.userInfo.nickname, res.userInfo.email, res.userInfo.avatar);
-                this.props.updataUser(true, res.userInfo.backgroundimgid, res.apps);
-                localStorage.setItem('expireAt', res.userInfo.expireAt);
-                if (res.userInfo.backgroundimgid) localStorage.setItem('photos', JSON.stringify(res.userInfo.backgroundimgid));
+                this.props.updateUserInfoDisplay(loginState.user.nickname, loginState.user.email, loginState.user.avatar);
+                this.props.updataUser(true, loginState.user.backgroundimgid, res.apps);
+                localStorage.setItem('expireAt', loginState.user.expireAt);
+                if (loginState.user.backgroundimgid) localStorage.setItem('photos', JSON.stringify(loginState.user.backgroundimgid));
                 if (res.apps) localStorage.setItem('apps', JSON.stringify(res.apps));
                 this.props.closeModule('Schedule');
                 this.props.closeModule('Notebook');
@@ -75,7 +104,7 @@ class Login extends React.Component {
             else {
                 this.props.message('登录失败' + res.message);
             }
-        });
+        });*/
     }
 
     render() {
@@ -98,7 +127,7 @@ class Login extends React.Component {
                         <button type="submit">登录</button>
                     </form>
                     <p className="toRegister">
-                        还没有账号？去<span onClick={() => this.registerDisplay(true)}>注册</span>
+                        还没有账号?去<span onClick={() => this.registerDisplay(true)}>注册</span>
                     </p>
                 </div>
                 {/* 注册 */}
@@ -108,10 +137,10 @@ class Login extends React.Component {
                         <strong>注册</strong>
                     </div>
                     <form className="registerInfo" onSubmit={ev => this.register(ev)}>
-                        <label>
+                        {/* <label>
                             <p>姓名</p>
                             <input type='text' name='username' placeholder="只能包含中文、英文、数字和下划线,长度1-10位" pattern="^[\u4e00-\u9fa5_a-zA-Z0-9_]{1,10}$" required />
-                        </label>
+                        </label> */}
                         <label>
                             <p>电子邮箱(Apple ID)</p>
                             <input type='text' name='email' placeholder="例:1234567890@qq.com" pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required />
@@ -121,6 +150,7 @@ class Login extends React.Component {
                             <input type='password' name='password' required />
                         </label>
                         <button type="submit">注册</button>
+                        <AlertDialog open={this.state.open} verify={this.verify}></AlertDialog>
                     </form>
                 </div>
             </div>

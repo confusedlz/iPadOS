@@ -20,7 +20,7 @@ class InstalledAppitem extends React.Component {
 
     delete(){
         const id=this.props.id;
-        request('deleteApp',id).then(res=>{
+        request('deleteApp',{id}).then(res=>{
             if(res.success){
                 this.props.unInstall(id);
             }

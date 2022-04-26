@@ -19,4 +19,4 @@ const app = new Koa();
 const resource=serve(path.join(__dirname));
 app.use(resource);
 
-module.exports = app.callback();
+module.exports = app;

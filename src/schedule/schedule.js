@@ -4,6 +4,7 @@ import Display_template from "../display_template/display_template";
 import todoList from '../../public/img/todolist.png';
 import Scheduleitems from "./scheduleItem";
 import request from "../request/request";
+import loginState from '../request/user/loginState';
 
 class Schedule extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class Schedule extends React.Component {
         this.state = {
             schedules: new Map(),
             todoList: new Map(),
+            user:{}
         };
         this.addSchedule = this.addSchedule.bind(this);
         this.add = this.add.bind(this);
@@ -19,19 +21,27 @@ class Schedule extends React.Component {
 
     componentDidMount() {
         //数据初始化
+        loginState().then(loginState=>{
+            const user=loginState.user;
+            this.setState({user:user})
+            if(user){
+                request('getSchedule',{uid:user.uid}).then(res => {
+                    if (res.success) {
+                        const schedules = new Map();
+                        const todoList = new Map();
+                        res.res.data.map(data => {
+                            if (data.todolist) todoList.set(data._id, data.title);
+                            else schedules.set(data._id, data.title);
+                        });
+                        this.setState({ schedules: schedules, todoList: todoList });
+                    }
+                });
+            }
+        });
+        /*
         if (localStorage.getItem('expireAt') || new Date().getTime() < localStorage.getItem('expireAt')) {
-            request('getSchedule').then(res => {
-                if (res.success) {
-                    const schedules = new Map();
-                    const todoList = new Map();
-                    res.scheduleItemList.map(data => {
-                        if (data.todolist) todoList.set(data._id, data.title);
-                        else schedules.set(data._id, data.title);
-                    });
-                    this.setState({ schedules: schedules, todoList: todoList });
-                }
-            });
-        }
+            
+        }*/
     }
 
     //修改存储数据
@@ -51,7 +61,7 @@ class Schedule extends React.Component {
                 if (key != data) datas.set(key, val);
             });
         }
-        console.log(data, flag, add, datas);
+        // console.log(data, flag, add, datas);
         if (!flag) this.setState({ schedules: datas });
         else this.setState({ todoList: datas });
     }
@@ -59,13 +69,13 @@ class Schedule extends React.Component {
     //添加代办事项
     addSchedule(ev) {
         ev.preventDefault();
-        if (!localStorage.getItem('expireAt') || new Date().getTime() > localStorage.getItem('expireAt')) {
+        if (!this.state.user) {
             this.props.message('请先登录');
             return;
         }
         const title = ev.target[0].value;
         request('addSchedule', {
-            title
+            title,uid:this.state.user.uid
         }).then(res => {
             if (res.success) {
                 this.props.message('添加成功');
@@ -73,7 +83,7 @@ class Schedule extends React.Component {
                 this.state.schedules.forEach((val, key) => {
                     schedules.set(key, val);
                 });
-                schedules.set(res.id, title);
+                schedules.set(res.res.id, title);
                 this.setState({ schedules: schedules });
             }
             else {
@@ -93,7 +103,7 @@ class Schedule extends React.Component {
 
     //清空
     clear(){
-        request('clearSchedule').then(res => {
+        request('clearSchedule',{uid:this.state.user.uid}).then(res => {
             if (res.success) {
                 this.props.message('清空成功');
                 this.setState({schedules:new Map(),todoList:new Map()});
