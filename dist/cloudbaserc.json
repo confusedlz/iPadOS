@@ -12,7 +12,7 @@
                 "use": "@cloudbase/framework-plugin-node",
                 "inputs": {
                     "name": "ipad",
-                    "path": "/dist",
+                    "path": "",
                     "entry": "main.js"
                 }
             }
