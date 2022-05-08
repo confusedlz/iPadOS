@@ -1,0 +1,13 @@
+.controller{
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 200px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 51;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Ipad from './Ipad';
+import Ipad from './components/Ipad';
 
 ReactDOM.render(
     <React.StrictMode>

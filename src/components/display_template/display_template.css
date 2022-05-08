@@ -1,0 +1,118 @@
+.display_template {
+    position: fixed;
+    top: 0;
+    padding-top: 20px;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 50;
+    background-color: #F3F2F8;
+    display: none;
+    transform-origin: bottom;
+}
+
+.display_template_display1{
+    animation: notdisplay .3s;
+}
+
+@keyframes notdisplay{
+    from{transform: scale(1,1);}
+    to{transform: scale(0.05,0.05);}
+}
+
+.display_template_display2{
+    animation: display .3s;
+}
+
+@keyframes display{
+    from{transform: scale(0.05,0.05);}
+    to{transform: scale(1,1);}
+}
+
+.display_template_display3{
+    display: block;
+}
+
+.display_template .display_template_main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.display_template .catalogue{
+    flex: 3;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #F3F2F8;
+    overflow: auto;
+    border-right: solid 2px #b5b4b9;
+}
+
+.display_template .catalogue::-webkit-scrollbar {
+    width: 4px;
+    /* opacity: .3; */
+}
+
+.display_template .catalogue::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.display_template .catalogue::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #929293;
+}
+
+/* .display_template .after{
+    flex: 0 0 2px;
+    height: 100vh;
+    background-color: #b5b4b9;
+} */
+
+.display_template .catalogue label{
+    position: relative;
+    display: block;
+    font-size: 18px;
+}
+
+.display_template .catalogue label i{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.display_template .catalogue label input{
+    padding-left: 25px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #E4E3E9;
+    border: none;
+}
+
+.display_template .content{
+    flex: 5;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.display_template .content::-webkit-scrollbar {
+    width: 4px;
+    opacity: .3;
+}
+
+.display_template .content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.display_template .content::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #929293;
+}

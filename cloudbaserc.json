@@ -1,0 +1,30 @@
+{
+  "envId": "ipad-2gf1azug01855b03",
+  "framework": {
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "installCommand": "npm install --prefer-offline --no-audit --progress=false",
+          "buildCommand": "npm run build",
+          "outputPath": "dist",
+          "cloudPath": "/path",
+          "ignore": [
+            ".git",
+            ".github",
+            "node_modules",
+            "cloudbaserc.js",
+            "src",
+            "public",
+            "main.js",
+            ".eslintrc.js"
+          ]
+        }
+      }
+    },
+    "name": "iPadOS-1-1"
+  },
+  "functionRoot": "./functions",
+  "functions": [],
+  "region": "ap-guangzhou"
+}
