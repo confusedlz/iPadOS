@@ -1,0 +1,58 @@
+.notefile .notefile_item {
+    position: relative;
+    padding: 10px 20px;
+    width: 95%;
+}
+
+.notefile .notefile_item h3 {
+    margin: 2px 4px;
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.notefile .notefile_item .notefile_itemData{
+    margin: 0 3px;
+    display: block;
+    width: 70%;
+    font-size: 14px;
+    font-weight: 300;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.notefile .notefile_item .delete{
+    position: absolute;
+    height: 100%;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    width: 0;
+    background-color: #f56468;
+    color: #fff;
+    transition: all ease-in 0.25s;
+}
+
+.notefile .notefile_item .delete i{
+    font-size: 2rem;
+    text-align: center;
+    line-height: 60px;
+}
+
+.notefile .notefile_item:hover .delete{
+    width: 44px;
+    opacity: 1;
+}
+
+.display_template .catalogue .notefile input[type="radio"]{
+    display: none;
+}
+
+.notefile input[type='radio']:checked+.notefile_item{
+    color: #ffffff;
+    background-color: #E4AF0b;
+}

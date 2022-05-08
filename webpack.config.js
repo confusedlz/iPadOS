@@ -1,8 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin=require('html-webpack-plugin');
 const { resolve } = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     // 有development模式和production模式两种
@@ -65,16 +65,16 @@ module.exports = {
           },
     },
     optimization: {
-        minimizer: [new UglifyJsPlugin({
-            parallel:4,
-            uglifyOptions:{
-                output:{
-                    comments:false,
-                    beautify:false,
-                },
-                compress:{warninfs:false},
-            },
-            cache:true,
-        })],
+        minimize: true,
+        minimizer: [new TerserPlugin(
+            {
+                terserOptions: {
+                    format: {
+                      comments: false,
+                    },
+                  },
+                  extractComments: false,
+            }
+        )],
       },
 }

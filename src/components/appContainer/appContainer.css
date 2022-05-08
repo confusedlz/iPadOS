@@ -1,0 +1,14 @@
+.appContainer{
+    display: grid;
+    max-width: 80%;
+    max-height: 100%;
+    grid-template-columns: repeat(auto-fit,minmax(12.5rem,1fr));
+    justify-content: space-between;
+    overflow: auto;
+    margin: auto;
+}
+
+.appContainer::-webkit-scrollbar {
+    width: 0;
+    opacity: 1;
+}

@@ -1,0 +1,35 @@
+.message {
+    position: fixed;
+    top: -50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    display: none;
+    min-width: 350px;
+    max-width: max-content;
+    height: 30px;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    transition: .1s;
+    border-radius: 10px;
+    opacity: .85;
+    z-index: 100;
+}
+
+.messageDisplay{
+    top: 10px;
+    display: block;
+}
+
+.message strong{
+    font-size: 16px;
+}
+
+.message span{
+    font-size: 14px;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}

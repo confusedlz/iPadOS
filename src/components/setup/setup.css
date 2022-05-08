@@ -1,0 +1,38 @@
+.setup {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.setupUserInfo{
+    padding: 3px 20px;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #4BA2FF;
+}
+
+.setupUserInfo img{
+    margin-top: 10px;
+    margin-right: 20px;
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+
+.setupUserInfo h2{
+    margin: 10px 0 0 0;
+}
+
+.setupUserInfo p{
+    margin: 5px 0 10px 0;
+}
+
+.setupInfoimg{
+    margin: 40px 0;
+    width: 100%;
+}
+
+.setup_main{
+    position: relative;
+}

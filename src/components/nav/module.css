@@ -1,0 +1,21 @@
+.nav_moudule{
+    position: relative;
+    margin: 5px 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .3s;
+    transform-origin: bottom;
+    cursor: pointer;
+}
+
+.nav_moudule:hover{
+    margin: 0 20px;
+    transform: scale(1.5, 1.5);
+}
+
+.nav_moudule img{
+    width: 100%;
+    height: 100%;
+}
