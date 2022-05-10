@@ -41,7 +41,7 @@ class Scheduleitems extends React.Component {
                 <div className="scheduleitems">
                     <input type='checkbox' onClick={() => this.finishSchedule()}></input>
                     <label></label>
-                    <span>{this.props.value}</span>
+                    <p>{this.props.value}</p>
                     <div onClick={() => this.delete()} className="delete"><i className="iconfont icon-shanchu"></i></div>
                 </div>
             )
@@ -50,7 +50,7 @@ class Scheduleitems extends React.Component {
             <div className="todoListitems">
                 <input type='checkbox' onClick={() => this.finishSchedule()} defaultChecked></input>
                 <label></label>
-                <span>{this.props.value}</span>
+                <p>{this.props.value}</p>
                 <div onClick={() => this.delete()} className="delete"><i className="iconfont icon-shanchu"></i></div>
             </div>
         )

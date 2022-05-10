@@ -19,6 +19,7 @@ class PhotoAlbum extends React.Component {
     }
 
     componentDidMount(){
+        //数据初始化
         loginState().then(loginState => {
             if (loginState) {
                 request('getPhotos', { uid: loginState.user.uid }).then(res => {
@@ -26,9 +27,9 @@ class PhotoAlbum extends React.Component {
                         if (res.photosFile) {
                             const photos = [];
                             for (const value of res.photosFile) {
-                                photos.push(value.tempFileURL);
+                                if(value.code==="SUCCESS") photos.push(value.tempFileURL);
                             }
-                            this.props.updataUser(true,photos);
+                            if(photos.length>0)this.props.updataUser(true,photos);
                         }
                     }
                 });
@@ -97,7 +98,7 @@ class PhotoAlbum extends React.Component {
         // 添加文件
         formData.append('myFile', fileData);
         this.postPhoto(formData);*/
-        const fileToBase64 = (fileData, fun) => {
+        const fileToBuffer = (fileData, fun) => {
             const fr = new FileReader();
             const filename = fileData.name;
             // fr.readAsDataURL(fileData);
@@ -107,7 +108,7 @@ class PhotoAlbum extends React.Component {
                 fun(buf,filename);
             };
         }
-        fileToBase64(fileData,this.postPhoto);
+        fileToBuffer(fileData,this.postPhoto);
     }
 
     render() {

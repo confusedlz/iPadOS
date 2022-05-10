@@ -146,10 +146,18 @@ const Notebook = (props) => {
         }).then(res => {
             if (res.success) {
                 props.message('删除成功');
-                const newn = new Map();
-                notebook.forEach((v, k) => newn.set(k, v));
-                newn.delete(id);
-                setNotebook(newn);
+                console.log(notebook.size);
+                if (notebook.size < 2){
+                    const newn = new Map().set('1', ['', '', new Date()]);
+                    changFoucs('1', '', '');
+                    setNotebook(newn);
+                }
+                else {
+                    const newn = new Map();
+                    notebook.forEach((v, k) => newn.set(k, v));
+                    newn.delete(id);
+                    setNotebook(newn);
+                }
             }
             else {
                 props.message('删除失败' + res.message);

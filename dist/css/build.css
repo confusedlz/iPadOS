@@ -1,0 +1,1570 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    box-sizing: border-box;
+    padding-top: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-position: 50%;
+    background-size: cover;
+    transition: background-image .5s;
+}
+
+.main{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+.lockScreen{
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: max-content;
+    height: max-content;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.lockScreen i{
+    font-size: 18px;
+}
+.status{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 20px;
+    z-index: 51;
+    /* background: #FFFFFF4D; */
+    background-origin: .7;
+}
+
+.status .left{
+    position: absolute;
+    /* float: left; */
+    left: 3px;
+}
+
+.status .left .time{
+    line-height: 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.status .right{
+    position: fixed;
+    /* float: right; */
+    top: 0;
+    right: 3px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.status .right span{
+    margin-left: 5px;
+    font-size: 18px;
+}
+
+
+
+@font-face {
+  font-family: "iconfont"; /* Project id 3179558 */
+  src: url(../7cbf0a98fa5846f257a5.woff2?t=1646989455118) format('woff2'),
+       url(../b340416d6597f92cdf37.woff?t=1646989455118) format('woff'),
+       url(../dac9da800f856953a0c0.ttf?t=1646989455118) format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tishi:before {
+  content: "\e72b";
+}
+
+.icon-baocun:before {
+  content: "\e64a";
+}
+
+.icon-xinjianbianji:before {
+  content: "\e637";
+}
+
+.icon-icon:before {
+  content: "\e64f";
+}
+
+.icon-zuojiantou:before {
+  content: "\e64e";
+}
+
+.icon-suoping:before {
+  content: "\e623";
+}
+
+.icon-youjiantou:before {
+  content: "\e622";
+}
+
+.icon-pingguo:before {
+  content: "\e610";
+}
+
+.icon-sousuo:before {
+  content: "\eafe";
+}
+
+.icon-shanchu:before {
+  content: "\e74b";
+}
+
+.icon-wifi:before {
+  content: "\e658";
+}
+
+.icon-80dianliang:before {
+  content: "\e638";
+}
+
+
+.section{
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 3px 5px;
+    display: flex;
+    border-radius: 20px;
+    border: 0 solid rgba(156,163,175,.3);
+    width: max-content;
+    height: 70px;
+    background-color: hsla(0,0%,100%,.4);
+    z-index: 30;
+}
+.nav_moudule{
+    position: relative;
+    margin: 5px 5px;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: .3s;
+    transform-origin: bottom;
+    cursor: pointer;
+}
+
+.nav_moudule:hover{
+    margin: 0 20px;
+    transform: scale(1.5, 1.5);
+}
+
+.nav_moudule img{
+    width: 100%;
+    height: 100%;
+}
+ .notefile {
+     margin-top: 20px;
+     border-radius: 10px;
+     overflow: hidden;
+     background-color: #ffffff;
+ }
+
+ .content_main {
+     position: relative;
+     height: 88%;
+     box-sizing: border-box;
+ }
+
+ .content_main .delete {
+     position: absolute;
+     right: 60px;
+     top: -5px;
+     width: 35px;
+     height: 35px;
+     border-radius: 35px;
+     cursor: pointer;
+     text-align: center;
+     line-height: 35px;
+     color: red;
+ }
+
+ .content_main .button i {
+     font-size: 1.5rem;
+ }
+
+ .content_main .button:hover {
+     background-color: #d3d3d3;
+ }
+
+ .content_main .new {
+     position: absolute;
+     right: 180px;
+     top: -5px;
+     width: 35px;
+     height: 35px;
+     border-radius: 35px;
+     cursor: pointer;
+     text-align: center;
+     line-height: 35px;
+     color: #E4AF0b;
+ }
+
+ .content_main .new i {
+     font-size: 1.8rem;
+ }
+
+ .content_main .save {
+     position: absolute;
+     right: 120px;
+     top: -5px;
+     width: 35px;
+     height: 35px;
+     border-radius: 35px;
+     cursor: pointer;
+     text-align: center;
+     line-height: 35px;
+     color: #E4AF0b;
+ }
+
+
+
+ .content_main p {
+     padding-top: 30px;
+     margin-bottom: 10px;
+     height: max-content;
+     text-align: center;
+     font-size: 16px;
+     color: #929293;
+ }
+
+ .content_main .textField {
+     position: absolute;
+     top: 50px;
+     left: 0;
+     right: 0;
+     margin: 0 auto;
+     border: none;
+     display: block;
+     width: 85%;
+     font-size: 2rem;
+     font-weight: 700;
+     /* background-color: #E4AF0b; */
+ }
+
+ .content_main .textField input{
+    font-size: 2rem;
+    font-weight: 700;
+ }
+
+ .content_main .textField label{
+    font-size: 2rem;
+    font-weight: 700;
+ }
+
+ .content_main .title:focus-visible {
+     border: none;
+     outline: none;
+ }
+
+ .content_main textarea {
+     position: absolute;
+     left: 0;
+     right: 0;
+     margin: 4.2rem auto 2.5rem auto;
+     min-height: 85%;
+     width: 85%;
+     resize: none;
+     border: none;
+     background: linear-gradient(transparent 95%, rgba(52, 73, 94, .5) 0);
+     font-size: 1.2em;
+     line-height: 2em;
+     background-size: 100% 2em;
+     background-attachment: local;
+     user-select: text;
+ }
+
+ .content_main textarea:focus {
+     outline: none;
+ }
+
+ .content_main textarea::-webkit-scrollbar {
+     width: 4px;
+     opacity: .3;
+ }
+
+ .content_main textarea::-webkit-scrollbar-track {
+     background-color: transparent;
+ }
+
+ .content_main textarea::-webkit-scrollbar-thumb {
+     border-radius: 5px;
+     background-color: #929293;
+ }
+.display_template {
+    position: fixed;
+    top: 0;
+    padding-top: 20px;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 50;
+    background-color: #F3F2F8;
+    display: none;
+    transform-origin: bottom;
+}
+
+.display_template_display1{
+    animation: notdisplay .3s;
+}
+
+@keyframes notdisplay{
+    from{transform: scale(1,1);}
+    to{transform: scale(0.05,0.05);}
+}
+
+.display_template_display2{
+    animation: display .3s;
+}
+
+@keyframes display{
+    from{transform: scale(0.05,0.05);}
+    to{transform: scale(1,1);}
+}
+
+.display_template_display3{
+    display: block;
+}
+
+.display_template .display_template_main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.display_template .catalogue{
+    flex: 3;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #F3F2F8;
+    overflow: auto;
+    border-right: solid 2px #b5b4b9;
+}
+
+.display_template .catalogue::-webkit-scrollbar {
+    width: 4px;
+    /* opacity: .3; */
+}
+
+.display_template .catalogue::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.display_template .catalogue::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #929293;
+}
+
+/* .display_template .after{
+    flex: 0 0 2px;
+    height: 100vh;
+    background-color: #b5b4b9;
+} */
+
+.display_template .catalogue label{
+    position: relative;
+    display: block;
+    font-size: 18px;
+}
+
+.display_template .catalogue label i{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.display_template .catalogue label input{
+    padding-left: 25px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #E4E3E9;
+    border: none;
+}
+
+.display_template .content{
+    flex: 5;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.display_template .content::-webkit-scrollbar {
+    width: 4px;
+    opacity: .3;
+}
+
+.display_template .content::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.display_template .content::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #929293;
+}
+.notefile .notefile_item {
+    position: relative;
+    padding: 10px 20px;
+    width: 95%;
+}
+
+.notefile .notefile_item h3 {
+    margin: 2px 4px;
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.notefile .notefile_item .notefile_itemData{
+    margin: 0 3px;
+    display: block;
+    width: 70%;
+    font-size: 14px;
+    font-weight: 300;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.notefile .notefile_item .delete{
+    position: absolute;
+    height: 100%;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    width: 0;
+    background-color: #f56468;
+    color: #fff;
+    transition: all ease-in 0.25s;
+}
+
+.notefile .notefile_item .delete i{
+    font-size: 2rem;
+    text-align: center;
+    line-height: 60px;
+}
+
+.notefile .notefile_item:hover .delete{
+    width: 44px;
+    opacity: 1;
+}
+
+.display_template .catalogue .notefile input[type="radio"]{
+    display: none;
+}
+
+.notefile input[type='radio']:checked+.notefile_item{
+    color: #ffffff;
+    background-color: #E4AF0b;
+}
+.setup {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.setupUserInfo{
+    padding: 3px 20px;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #4BA2FF;
+}
+
+.setupUserInfo img{
+    margin-top: 10px;
+    margin-right: 20px;
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+
+.setupUserInfo h2{
+    margin: 10px 0 0 0;
+}
+
+.setupUserInfo p{
+    margin: 5px 0 10px 0;
+}
+
+.setupInfoimg{
+    margin: 40px 0;
+    width: 100%;
+}
+
+.setup_main{
+    position: relative;
+}
+.loginOn{
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.loginOnnotdisplay{
+    display: none;
+}
+
+.loginOn .loginOnInfo h3{
+    margin: 0 0 30px 0;
+}
+
+.loginOn .loginOnInfo .avatar{
+    position: relative;
+    left:0;
+    right: 0;
+    margin:auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.loginOn .loginOnInfo .avatar img{
+    width: 100%;
+    height: 100%;
+}
+
+.loginOn .loginOnInfo .avatar .changeAvatar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background-color: black;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.loginOn .loginOnInfo .avatar .changeAvatar input{
+    display: none;
+}
+
+.loginOn .loginOnInfo h2{
+    margin: 10px 0 0 0;
+}
+
+.loginOn .loginOnInfo p{
+    margin: 3px 0 0 0;
+}
+
+.loginOn .userInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #ffffff;
+    text-align: left;
+    overflow: hidden;
+}
+
+.loginOn .userInfo .userInfoItem{
+    padding: 15px 12px 15px 30px;
+    font-size: 1.5rem;
+    /* font-weight: 600; */
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid #F3F2F8;
+    transition: .1s;
+}
+
+.loginOn .userInfo .userInfoItem:hover{
+    background-color: #b4b3b3;
+    cursor: pointer;
+}
+
+.loginOn .userInfo .userInfoItem i, .loginOn .userInfo .userInfoItem span{
+    float: right;
+    margin-right: 10px;
+    line-height: 22px;
+    color: #CECECE;
+}
+
+.userInfoimg{
+    width: 90%;
+}
+
+.loginOn .loginOut{
+    left: 0;
+    right: 0;
+    margin: 20px auto 100px auto;
+    display: block;
+    width: 90%;
+    height: 50px;
+    background-color: #ffffff;
+    color: red;
+    font-size: 18px;
+    line-height: 50px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.loginOn .loginOut:hover{
+    background-color: #b4b3b3;
+}
+
+.updateUserData{
+    display: block;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 100%;
+    transition: .2s;
+    z-index: 51;
+    background-color: rgb(243, 242, 248);
+}
+
+.updateUserDataDisplay{
+    left: 0;
+}
+
+.updateUserData .updateStatus{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    height: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.updateUserData .updateStatus button{
+    font-size: 18px;
+    float: left;
+    color: #4BA2FF;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.updateUserData .updateInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.updateUserData .updateInfo label{
+    margin-top: 20px;
+    display: block;
+}
+
+.updateUserData .updateInfo p{
+    margin: 3px 0;
+    padding: 5px;
+    color: #7c7b7e;
+    font-size: 16px;
+}
+
+.updateUserData .updateInfo input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.updateUserData .updateInfo input:focus{
+    outline: none;
+    border: none;
+}
+
+.updateUserData .updateInfo button{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.updateUserData .updateInfo button:hover{
+    background-color: #b4b3b3;
+}
+.login{
+    display: block;
+    width: 100%;
+    transition: .2s;
+    z-index: 51;
+    background-color: rgb(243, 242, 248);
+}
+
+.loginNoDisplay{
+    display: none;
+}
+
+.login .loginStatus{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    height: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.login .loginInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.login .loginInfo label{
+    margin-top: 20px;
+    display: block;
+}
+
+.login .loginInfo p{
+    margin: 3px 0;
+    padding: 5px;
+    color: #7c7b7e;
+    font-size: 16px;
+}
+
+.login .loginInfo input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.login .loginInfo input:focus{
+    outline: none;
+    border: none;
+}
+
+.login .loginInfo button{
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.login .loginInfo button:hover{
+    background-color: #b4b3b3;
+}
+
+.login .toRegister{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login .toRegister span{
+    color: #4BA2FF;
+    cursor: pointer;
+    text-decoration:underline;
+}
+
+.register{
+    display: block;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 100%;
+    transition: .2s;
+    z-index: 51;
+    background-color: rgb(243, 242, 248);
+}
+
+.registerDisplay{
+    left: 0;
+}
+
+.register .registerStatus{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    height: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.register .registerStatus button{
+    font-size: 18px;
+    float: left;
+    color: #4BA2FF;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.register .registerStatus strong{
+    margin-left: -70px;
+}
+
+.register .registerInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.register .registerInfo label{
+    margin-top: 20px;
+    display: block;
+}
+
+.register .registerInfo p{
+    margin: 3px 0;
+    padding: 5px;
+    color: #7c7b7e;
+    font-size: 16px;
+}
+
+.register .registerInfo input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    padding: 0 10px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.register .registerInfo input:focus{
+    outline: none;
+    border: none;
+}
+
+.register .registerInfo button{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.register .registerInfo button:hover{
+    background-color: #b4b3b3;
+}
+.message {
+    position: fixed;
+    top: -50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 20px;
+    display: none;
+    min-width: 350px;
+    max-width: max-content;
+    height: 30px;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    transition: .1s;
+    border-radius: 10px;
+    opacity: .85;
+    z-index: 100;
+}
+
+.messageDisplay{
+    top: 10px;
+    display: block;
+}
+
+.message strong{
+    font-size: 16px;
+}
+
+.message span{
+    font-size: 14px;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+}
+.photoFile{
+    margin-top: 20px;
+}
+
+.photoFile .postPhoto{
+    margin-top: 30px;
+    margin-bottom: 100px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.photoFile .postPhoto input{
+    display: none;
+}
+
+.previewMain{
+    position: relative;
+    box-sizing: border-box;
+    padding: 0 20px 20px 20px;
+    text-align: center;
+    /* transition: .3s; */
+}
+
+.previewMain img{
+    width: 100%;
+    border-radius: 5px;
+    
+}
+
+.previewMain button{
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    font-size: 18px;
+    color: #4BA2FF;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.previewMain button i{
+    font-size: 20px;
+}
+.photo input[type='radio']{
+    display: none;
+}
+
+.photo input[type='radio']:checked+.photoItem{
+    background-color: #4BA2FF;
+}
+
+.photoItem{
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.photoItem img{
+    width: 100%;
+    border-radius: 5px;
+}
+.appContainer{
+    display: grid;
+    max-width: 80%;
+    max-height: 100%;
+    grid-template-columns: repeat(auto-fit,minmax(12.5rem,1fr));
+    justify-content: space-between;
+    overflow: auto;
+    margin: auto;
+}
+
+.appContainer::-webkit-scrollbar {
+    width: 0;
+    opacity: 1;
+}
+.appItem{
+    cursor: pointer;
+    margin: 3.125rem 2.5rem;
+}
+
+.appItem a .appIcon{
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 16%;
+    overflow: hidden;
+    width: 6.25rem;
+    height: 6.25rem;
+    line-height: 6.25rem;
+    text-align: center;
+    background-color: #4BA2FF;
+}
+
+.appItem a .appIcon:hover{
+    transform: scale(1.05);
+}
+
+.appItem a{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.appItem a .appIcon img{
+    width: 100%;
+    height: 100%;
+}
+
+.appItem a .appIcon span{
+    font-size: 4.375rem;
+}
+
+.appItem a p{
+    left: 0;
+    right: 0;
+    margin: .625rem auto 0 auto;
+    max-width: 6.25rem;
+    font-size: 1rem;
+    text-shadow: 0 0 0.5rem rgb(0 0 0 / 60%);
+    text-align: center;
+}
+.lockScreenMain{
+    position: fixed;
+    left: 0;
+    top: -100vh;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    z-index: 55;
+    background-image: url(https://6970-ipad-2gf1azug01855b03-1304065141.tcb.qcloud.la/photos/wallpaper2.jpg?sign=f07412276d881869752f277dd93294ad&t=1650963655);
+    background-position: 50%;
+    background-size: cover;
+    color: #ffffff;
+    transition: .4s;
+}
+
+.lockScreenMainDisplay{
+    top: 0;
+}
+
+.lockScreenMain .right{
+    position: absolute;
+    right: 3px;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.lockScreenMain h1{
+    margin-top: 100px;
+    margin-bottom: 0;
+    font-size: 60px;
+    text-align: center;
+}
+
+.lockScreenMain p{
+    margin-top: 5px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.installedApp{
+    margin-bottom: 70px;
+}
+
+.installApp{
+    margin-bottom: 70px;
+    display: block;
+    width: 100%;
+    background-color: rgb(243, 242, 248);
+}
+
+.installApp .installAppStatus{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    height: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.installApp .installAppInfo{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    width: 90%;
+}
+
+.installApp .installAppInfo label{
+    margin-top: 20px;
+    display: block;
+}
+
+.installApp .installAppInfo p{
+    margin: 3px 0;
+    padding: 5px;
+    color: #7c7b7e;
+    font-size: 16px;
+}
+
+.installApp .installAppInfo input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.installApp .installAppInfo input:focus{
+    outline: none;
+    border: none;
+}
+
+.installApp .installAppInfo button{
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.installApp .installAppInfo button:hover{
+    background-color: #b4b3b3;
+}
+.installedAppitem{
+    position: relative;
+    margin-bottom: 10px;
+    padding: 3px 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.installedAppitem img{
+    margin-top: 10px;
+    margin-right: 20px;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.installedAppitem span{
+    display: block;
+    margin-top: 10px;
+    margin-right: 20px;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    background-color: #4BA2FF;
+}
+
+.installedAppitem h2{
+    margin: 10px 0 0 0;
+}
+
+.installedAppitem p{
+    margin: 5px 0 10px 0;
+    font-weight: 300;
+}
+
+.installedAppitem .delete{
+    position: absolute;
+    height: 100%;
+    line-height: 75px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    width: 0;
+    background-color: #f56468;
+    color: #fff;
+    text-align: center;
+    transition: all ease-in 0.25s;
+}
+
+.installedAppitem .delete i{
+    font-size: 2rem;
+}
+
+.installedAppitem:hover .delete{
+    width: 44px;
+    opacity: 1;
+}
+.controller{
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 200px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 51;
+}
+.appManagement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0, 0.7);
+    z-index: 25;
+}
+
+.appManagement .appManagementMain {
+    position: relative;
+    top: 40px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80vw;
+    height: 85vh;
+    box-sizing: border-box;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-rows: minmax(50%, 1fr) minmax(50%, 1fr);
+    grid-auto-flow: column;
+}
+
+.appManagement .appManagementMain .appitems{
+    position: relative;
+    width: 16vw;
+    height: 33vh;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.appManagement .appManagementMain .appitems .managementIcon{
+    float: left;
+    margin: 0 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+}
+
+.appManagement .appManagementMain .appTitle{
+    color: #ffffff;
+    margin: 0 0 3px 0;
+}
+
+.appManagement .appManagementMain .display_template {
+    position: absolute;
+    top: 25px;
+    display: block;
+    transform: scale(0.155, 0.27);
+    transform-origin: top left;
+    border-radius: 10px;
+    z-index: 20;
+}
+.addSchedule{
+    display: block;
+    width: 100%;
+    background-color: rgb(243, 242, 248);
+}
+
+.addSchedule .addScheduleStatus{
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    height: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.addSchedule .addScheduleInfo{
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    width: 90%;
+}
+
+.addSchedule .addScheduleInfo label{
+    margin-top: 20px;
+    display: block;
+}
+
+.addSchedule .addScheduleInfo p{
+    margin: 3px 0;
+    padding: 5px;
+    color: #7c7b7e;
+    font-size: 16px;
+}
+
+.addSchedule .addScheduleInfo input{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    padding: 0 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+}
+
+.addSchedule .addScheduleInfo input:focus{
+    outline: none;
+    border: none;
+}
+
+.addSchedule .addScheduleInfo button{
+    margin-top: 30px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    line-height: 50px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: #4BA2FF;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.addSchedule .addScheduleInfo button:hover{
+    background-color: #b4b3b3;
+}
+
+.addSchedule .addScheduleTips img{
+    display: block;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 35%;
+    border-radius: 10px;
+}
+
+.addSchedule .addScheduleTips {
+    margin-top: 30px;
+}
+
+.addSchedule .addScheduleTips p{
+    margin: 5px;
+    font-size: 18px;
+    text-align: center;
+    color: #7c7b7e;
+}
+
+.scheduleitems{
+    position: relative;
+    margin: 10px 0;
+    background: #e0e8f5;
+    border-radius: 3px;
+    padding-left: 38px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 49px;
+    overflow: hidden;
+}
+
+.scheduleitems input{
+    position: absolute;
+    cursor: pointer;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    border: 1px solid #cfdcec;
+    background-color: #fff;
+}
+
+.display_template .catalogue .scheduleitems label{
+    position: absolute;
+    opacity: 0;
+    display: none;
+}
+
+.scheduleitems p{
+    margin: 0;
+    padding: 0 0.5em;
+    max-width: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.scheduleitems .delete{
+    position: absolute;
+    height: 100%;
+    line-height: 45px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    width: 0;
+    background-color: #f56468;
+    color: #fff;
+    text-align: center;
+    transition: all ease-in 0.25s;
+}
+
+.scheduleitems .delete i{
+    font-size: 18px;
+}
+
+.scheduleitems:hover .delete{
+    width: 44px;
+    opacity: 1;
+}
+
+.todoListitems{
+    position: relative;
+    margin: 10px 0;
+    background: #ffffff;
+    border-radius: 3px;
+    padding-left: 38px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 49px;
+    overflow: hidden;
+}
+
+.todoListitems input{
+    position: absolute;
+    cursor: pointer;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    border: 1px solid #cfdcec;
+    background-color: #fff;
+}
+
+.display_template .catalogue .todoListitems label{
+    position: absolute;
+    opacity: 0;
+    display: none;
+}
+
+.todoListitems p{
+    margin: 0;
+    padding: 0 0.5em;
+    max-width: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.todoListitems .delete{
+    position: absolute;
+    height: 100%;
+    line-height: 45px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0;
+    width: 0;
+    background-color: #f56468;
+    color: #fff;
+    text-align: center;
+    transition: all ease-in 0.25s;
+}
+
+.todoListitems .delete i{
+    font-size: 18px;
+}
+
+.todoListitems:hover .delete{
+    width: 44px;
+    opacity: 1;
+}
+
+.clear{
+    margin: 10px;
+    text-align: center;
+}
+
+.clear span{
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.clear span::after{
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 3px;
+    background-color: #f4586e;
+    bottom: -5px;
+    left: 0;
+    transition: all ease-in 0.25s;
+}
+
+.clear span:hover::after{
+    width: 100%;
+}

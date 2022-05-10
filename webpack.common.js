@@ -2,11 +2,8 @@ const path = require('path')
 const HtmlWebpackPlugin=require('html-webpack-plugin');
 const { resolve } = require('path');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
-const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
-    // 有development模式和production模式两种
-    mode: 'development',
     // 打包的入口文件地址
     entry: path.resolve(__dirname, './src/index.js'),
     output: {
@@ -19,10 +16,7 @@ module.exports = {
     },
 
     module: {
-        rules: [{
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
-            },
+        rules: [
             {
                 // 对项目中.js和jsx结尾的文件，使用babel-loader进行转义处理
                 test: /\.(js|jsx)$/,
@@ -46,6 +40,7 @@ module.exports = {
             }
         ],
     },
+    
     plugins: [
         new HtmlWebpackPlugin({
             // 以public/index.html文件为模板
@@ -56,25 +51,4 @@ module.exports = {
         }),
         new NodePolyfillPlugin()
     ],
-    devServer:{
-        port:3000,
-        hot:true,
-        open:true,
-        client: {
-            progress: true,
-          },
-    },
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin(
-            {
-                terserOptions: {
-                    format: {
-                      comments: false,
-                    },
-                  },
-                  extractComments: false,
-            }
-        )],
-      },
-}
+};

@@ -124,11 +124,11 @@ class Login extends React.Component {
                     <form className="loginInfo" onSubmit={ev => this.login(ev)}>
                         <label>
                             <p>电子邮箱(Apple ID)</p>
-                            <input type='text' name='email' pattern='^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$' required />
+                            <input type='text' name='email' autoComplete='email' pattern='^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$' required />
                         </label>
                         <label>
                             <p>密码</p>
-                            <input type='password' name='password' required />
+                            <input type='password' name='password' autoComplete='current-password' required />
                         </label>
                         <button type="submit">登录</button>
                     </form>
@@ -149,11 +149,11 @@ class Login extends React.Component {
                         </label> */}
                         <label>
                             <p>电子邮箱(Apple ID)</p>
-                            <input type='text' name='email' placeholder="例:1234567890@qq.com" pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required />
+                            <input type='text' name='email' autoComplete='email' placeholder="例:1234567890@qq.com" pattern="^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$" required />
                         </label>
                         <label>
                             <p>密码</p>
-                            <input type='password' name='password' required />
+                            <input type='password' autoComplete='current-password' name='password' required />
                         </label>
                         <button type="submit">注册</button>
                         <AlertDialog open={this.state.open} verify={this.verify}></AlertDialog>

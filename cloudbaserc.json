@@ -8,7 +8,7 @@
           "installCommand": "npm install --prefer-offline --no-audit --progress=false",
           "buildCommand": "npm run build",
           "outputPath": "dist",
-          "cloudPath": "/path",
+          "cloudPath": "/",
           "ignore": [
             ".git",
             ".github",
@@ -22,7 +22,7 @@
         }
       }
     },
-    "name": "iPadOS-1-1"
+    "name": "iPadOS"
   },
   "functionRoot": "./functions",
   "functions": [],

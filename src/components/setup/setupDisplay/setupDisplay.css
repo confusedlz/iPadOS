@@ -66,8 +66,9 @@
 
 .loginOn .userInfo .userInfoItem{
     padding: 15px 12px 15px 30px;
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: 1.5rem;
+    /* font-weight: 600; */
+    letter-spacing: 1.5px;
     border-bottom: 2px solid #F3F2F8;
     transition: .1s;
 }

@@ -118,10 +118,13 @@
     display: none;
 }
 
-.scheduleitems span{
-    position: relative;
-    display: inline-block;
+.scheduleitems p{
+    margin: 0;
     padding: 0 0.5em;
+    max-width: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
 
 .scheduleitems .delete{
@@ -180,10 +183,13 @@
     display: none;
 }
 
-.todoListitems span{
-    position: relative;
-    display: inline-block;
+.todoListitems p{
+    margin: 0;
     padding: 0 0.5em;
+    max-width: 100%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
     color: #888;
     text-decoration: line-through;
 }
