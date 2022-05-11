@@ -115,7 +115,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 {/* 登录 */}
                 <div className={this.state.loginClassName} >
                     <div className="loginStatus">
@@ -159,7 +159,7 @@ class Login extends React.Component {
                         <AlertDialog open={this.state.open} verify={this.verify}></AlertDialog>
                     </form>
                 </div>
-            </div>
+            </>
         );
     }
 }

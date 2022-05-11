@@ -36,7 +36,7 @@ import '../../../public/fonticon/iconfont.css';
 
     //搜索
     search(ev){
-        this.props.search(ev.target.value);
+        if(this.props.search) this.props.search(ev.target.value);
     }
 
     render() {

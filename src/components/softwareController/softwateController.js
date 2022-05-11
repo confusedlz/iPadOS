@@ -17,7 +17,6 @@ class SoftwareController extends React.Component {
                 <div className="comeback" title='回到主页面' onClick={this.close}>
                     <i className="iconfont icon-pingguo"></i>
                 </div>
-
             </div>
         );
     };

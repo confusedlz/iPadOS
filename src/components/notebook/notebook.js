@@ -19,7 +19,7 @@ const Notebook = (props) => {
         if (user) {
             await request('getUserNote', { uid: user.uid }).then(res => {
                 if (res.success) {
-                    if (res.res.data.length < 1) newNoteFile();
+                    if (!res.res.data||res.res.data.length < 1) newNoteFile();
                     else {
                         const newn = new Map();
                         res.res.data.forEach(data => {
@@ -167,7 +167,7 @@ const Notebook = (props) => {
 
     //搜索显示
     const display = () => {
-        if (searchFlag && searchFlag != '') {
+        if (searchFlag && searchFlag !== '') {
             const str = new RegExp(searchFlag);
             return convert().map(val => {
                 if (str.test(val[1][0]))
@@ -202,7 +202,6 @@ const Notebook = (props) => {
                     {id === '' ? null : <div>
                         <p>{props.date.toLocaleString([], options)}</p>
                         <TextField className="textField" fullWidth variant="standard" label="Title" value={title} onChange={ev => updateTitle(ev)}></TextField>
-                        {/* <label><input className="title" value={title} onChange={ev => updateTitle(ev)} /></label> */}
                         <label><textarea value={datas} spellCheck='false' onChange={ev => setText(ev)} /></label>
                     </div>}
                 </div>

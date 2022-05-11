@@ -164,7 +164,7 @@ class SetupDisplay extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 {/* 个人信息展示 */}
                 <div className={this.state.loginOnClassName}>
                     <div className="loginOnInfo">
@@ -206,7 +206,7 @@ class SetupDisplay extends React.Component {
                         <button type="submit">修改个人信息</button>
                     </form>
                 </div>
-            </div>
+            </>
         );
     };
 }

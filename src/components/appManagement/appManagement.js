@@ -17,13 +17,13 @@ class AppManagement extends React.Component {
         super(props);
     }
 
-    close(){
+    close() {
         this.props.changeAppManagement(false);
     }
 
     render() {
         return (
-            <div className="appManagement" onClick={()=>this.close()}>
+            <div className="appManagement" onClick={() => this.close()}>
                 <div className="appManagementMain">
                     {this.props.load.has('Notebook') ?
                         <Application
@@ -69,7 +69,7 @@ class AppManagement extends React.Component {
                             img={setupimg}
                         />
                         : null}
-                        {this.props.load.has('Schedule') ?
+                    {this.props.load.has('Schedule') ?
                         <Application
                             title='代办事项'
                             name='Schedule'
@@ -81,7 +81,6 @@ class AppManagement extends React.Component {
                         />
                         : null}
                 </div>
-
             </div>
         )
     }

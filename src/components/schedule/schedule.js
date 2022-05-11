@@ -12,11 +12,13 @@ class Schedule extends React.Component {
         this.state = {
             schedules: new Map(),
             todoList: new Map(),
-            user:{}
+            user:{},
+            searchContent:''
         };
         this.addSchedule = this.addSchedule.bind(this);
         this.add = this.add.bind(this);
         this.changestate = this.changestate.bind(this);
+        this.display=this.display.bind(this);
     }
 
     componentDidMount() {
@@ -26,7 +28,7 @@ class Schedule extends React.Component {
             this.setState({user:user})
             if(user){
                 request('getSchedule',{uid:user.uid}).then(res => {
-                    if (res.success&&res.res.data.length>0) {
+                    if (res.success&&res.res.data&&res.res.data.length>0) {
                         const schedules = new Map();
                         const todoList = new Map();
                         res.res.data.forEach(data => {
@@ -112,43 +114,50 @@ class Schedule extends React.Component {
         
     }
 
+    //搜索显示
+    display(datas,flag){
+        if(this.state.searchContent&&this.state.searchContent!==''){
+            const str = new RegExp(this.state.searchContent);
+            return datas.map(val=>{
+                if(str.test(val[0]))
+                    return <Scheduleitems changestate={this.changestate} key={val[1]} id={val[1]} value={val[0]} flag={flag}/>;
+            })
+        }
+        return datas.map(val=><Scheduleitems changestate={this.changestate} key={val[1]} id={val[1]} value={val[0]} flag={flag}/>);
+    }
+
     render() {
         return (
             <Display_template
                 close={this.props.close}
                 rouse={this.props.rouse}
                 changeColor={this.props.changeColor}
+                search={(value) => { this.setState({searchContent:value})}}
                 name='Schedule'
                 title='代办事项'
                 background_color='#F3F2F8'
                 catalogue={
-                    <div>
+                    <>
                         {this.state.schedules.size ?
                             <div className="scheduleMain">
                                 <h3>您拥有{this.state.schedules.size}条待办事项</h3>
-                                {this.add(this.state.schedules).map(val => {
-                                    return <Scheduleitems changestate={this.changestate} key={val[1]} id={val[1]} value={val[0]} flag={false} />;
-                                })}
+                                {this.display(this.add(this.state.schedules),false)}
                             </div>
                             : null}
                         {this.state.todoList.size > 0 ?
                             <div className="todoList">
                                 <h3>已完成事项:{((this.state.todoList.size)/(this.state.schedules.size+this.state.todoList.size)*100).toFixed()}%</h3>
-                                {this.add(this.state.todoList).map(val => {
-                                    return <Scheduleitems changestate={this.changestate} key={val[1]} id={val[1]} value={val[0]} flag={true} />;;
-                                })}
+                                {this.display(this.add(this.state.todoList),true)}
                             </div>
                             : null}
                         {this.state.todoList.size+this.state.schedules.size>0?
                             <div className="clear"><span onClick={()=>this.clear()}>清除所有</span></div>
                         :null}
-                    </div>
+                    </>
                 }
                 content={
                     <div className='addSchedule' >
-                        <div className="addScheduleStatus">
-                            <strong>添加代办事项</strong>
-                        </div>
+                        <p className="addScheduleStatus">添加代办事项</p>
                         <form className="addScheduleInfo" onSubmit={ev => this.addSchedule(ev)}>
                             <label>
                                 <p>代办事项</p>

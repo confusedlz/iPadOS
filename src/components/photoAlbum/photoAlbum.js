@@ -15,10 +15,10 @@ class PhotoAlbum extends React.Component {
         };
         this.changeView = this.changeView.bind(this);
         this.fileRef = React.createRef();
-        this.postPhoto=this.postPhoto.bind(this);
+        this.postPhoto = this.postPhoto.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         //数据初始化
         loginState().then(loginState => {
             if (loginState) {
@@ -26,10 +26,11 @@ class PhotoAlbum extends React.Component {
                     if (res.success) {
                         if (res.photosFile) {
                             const photos = [];
+                            const set = new Set(this.props.photos);
                             for (const value of res.photosFile) {
-                                if(value.code==="SUCCESS") photos.push(value.tempFileURL);
+                                if (value.code === "SUCCESS" && !set.has(value.tempFileURL)) photos.push(value.tempFileURL);
                             }
-                            if(photos.length>0)this.props.updataUser(true,photos);
+                            if (photos.length > 0) this.props.updataUser(true, photos);
                         }
                     }
                 });
@@ -48,21 +49,23 @@ class PhotoAlbum extends React.Component {
     }
 
     //上传照片
-    async postPhoto(file,filename) {
-        const loginState1 =await loginState();
+    async postPhoto(file, filename) {
+        const loginState1 = await loginState();
         if (!loginState1) {
             this.props.message('请先登录');
         } else {
-            const user=loginState1.user;
-            filename=encodeURI(filename);
-            request('uploadPhoto',{file,uid:user.uid,filename},true).then(res=>{
+            const user = loginState1.user;
+            filename = encodeURI(filename);
+            request('uploadPhoto', { file, uid: user.uid, filename }, true).then(res => {
                 if (res.success) {
                     this.props.message('上传成功');
-                    this.props.updataUser(true,[res.url]);
+                    this.props.updataUser(true, [res.url]);
                 }
                 else {
-                    this.props.message('上传失败');
+                    this.props.message('上传失败' + res.message);
                 }
+            }).catch(error => {
+                this.props.message('上传失败' + error);
             });/*
             request('updateUserimg', formData, {
                 headers: {
@@ -103,12 +106,12 @@ class PhotoAlbum extends React.Component {
             const filename = fileData.name;
             // fr.readAsDataURL(fileData);
             fr.readAsArrayBuffer(fileData);
-            fr.onload=ev=>{
-                const buf=Buffer.from(ev.target.result);
-                fun(buf,filename);
+            fr.onload = ev => {
+                const buf = Buffer.from(ev.target.result);
+                fun(buf, filename);
             };
         }
-        fileToBuffer(fileData,this.postPhoto);
+        fileToBuffer(fileData, this.postPhoto);
     }
 
     render() {
@@ -122,8 +125,8 @@ class PhotoAlbum extends React.Component {
                 title='相册'
                 catalogue={
                     <div className="photoFile">
-                        {photos.map(photo => {
-                            return <Photo key={photo} src={photo} className={this.state.className} changeView={this.changeView} />
+                        {photos.map((photo, i) => {
+                            return <Photo key={photo} src={photo} className={this.state.className} changeView={this.changeView} defaultChecked={i === 0 ? true : false} />
                         })}
                         <button className="postPhoto" onClick={() => this.upload()}>
                             上传图片

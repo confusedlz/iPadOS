@@ -58,9 +58,9 @@ class Scheduleitems extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
                 {this.display()}
-            </div>
+            </>
         );
     }
 }
